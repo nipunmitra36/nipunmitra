@@ -5,6 +5,7 @@
   "description": "Portfolio of Nipun Mitra, software developer.",
   "type": "module",
   "scripts": {
+    "generate": "node scripts/generate.mjs",
     "build": "node build.mjs",
     "preview": "npx serve@14.2.4 dist"
   },

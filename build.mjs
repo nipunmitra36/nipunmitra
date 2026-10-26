@@ -1,20 +1,21 @@
 // Production build: `npm run build` → dist/
 //
+// - Regenerates every page from src/ (same as `npm run generate`).
 // - Fills {{SITE_URL}} (canonical, Open Graph, structured data) with the live URL.
 //   The URL is picked up automatically on Vercel and Netlify; anywhere else pass it
 //   as an argument (`npm run build -- https://example.com`) or set SITE_URL.
-// - Compiles Tailwind into a minified, content-hashed stylesheet instead of the CDN.
-// - Renders the blog (index, one page per post, RSS) to static HTML.
-// - Writes robots.txt and sitemap.xml.
+// - Compiles Tailwind into a minified stylesheet instead of the CDN, and fingerprints CSS/JS.
+// - Writes robots.txt, sitemap.xml and the blog RSS feed.
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import { posts } from './blog/posts.mjs';
-import { renderIndex, renderPost } from './blog/template.mjs';
+import { join, dirname } from 'node:path';
+import { generate } from './scripts/generate.mjs';
+import { baseFor, canonicalFor } from './src/layout.mjs';
+import { posts } from './src/posts.mjs';
 
 const require = createRequire(import.meta.url);
 const OUT = 'dist';
@@ -32,6 +33,8 @@ if (!detected) {
 const SITE_URL = detected.replace(/\/+$/, '');
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 
+const pages = generate();
+
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(join(OUT, 'assets'), { recursive: true });
 
@@ -42,66 +45,41 @@ const hashed = (name, ext, content) => {
 };
 
 // ---------- Tailwind ----------
-let html = readFileSync('index.html', 'utf8');
-const block = /<!-- build:tailwind -->[\s\S]*?<!-- \/build:tailwind -->/;
-const configMatch = html.match(/tailwind\.config\s*=\s*(\{[\s\S]*?\});\s*<\/script>/);
-if (!block.test(html) || !configMatch) throw new Error('Tailwind dev block not found in index.html');
+const twSource = readFileSync('assets/tailwind.config.js', 'utf8');
+const tw = {};
+new Function('tailwind', twSource)(tw);
 
-// index.html is the single source of truth for the Tailwind theme.
-const theme = new Function(`return ${configMatch[1]}`)();
 const tmp = join(tmpdir(), `nm-tw-${process.pid}`);
 mkdirSync(tmp, { recursive: true });
 const configFile = join(tmp, 'tailwind.config.cjs');
 const inputFile = join(tmp, 'input.css');
 const cssFile = join(tmp, 'out.css');
-const content = [join(process.cwd(), 'index.html'), join(process.cwd(), 'blog', '*.mjs')].map((p) => p.replace(/\\/g, '/'));
-writeFileSync(configFile, `module.exports = ${JSON.stringify({ ...theme, content })};`);
+const content = [...pages.map((p) => p.file), 'assets/main.js'].map((f) => join(process.cwd(), f).replace(/\\/g, '/'));
+writeFileSync(configFile, `module.exports = ${JSON.stringify({ ...tw.config, content })};`);
 writeFileSync(inputFile, '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n');
 execFileSync(process.execPath, [require.resolve('tailwindcss/lib/cli.js'), '-c', configFile, '-i', inputFile, '-o', cssFile, '--minify'], { stdio: 'inherit' });
-
 const tailwindCss = readFileSync(cssFile);
 rmSync(tmp, { recursive: true, force: true });
-const css = {
+
+const assets = {
   tailwind: hashed('tailwind', 'css', tailwindCss),
-  blog: hashed('blog', 'css', readFileSync('blog/blog.css')),
+  site: hashed('site', 'css', readFileSync('assets/site.css')),
+  main: hashed('main', 'js', readFileSync('assets/main.js')),
 };
 
-// ---------- Home + 404 ----------
+// ---------- Pages ----------
 const fill = (s) => s.replaceAll('{{SITE_URL}}', SITE_URL).replaceAll('{{BUILD_DATE}}', BUILD_DATE);
-html = html.replace(block, `<link rel="stylesheet" href="${css.tailwind}" />`);
-writeFileSync(join(OUT, 'index.html'), fill(html));
-writeFileSync(join(OUT, '404.html'), fill(readFileSync('404.html', 'utf8')));
-
-// ---------- Blog ----------
-const ctx = { site: SITE_URL, css, buildDate: BUILD_DATE };
-const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
-mkdirSync(join(OUT, 'blog'), { recursive: true });
-writeFileSync(join(OUT, 'blog', 'index.html'), renderIndex(sorted, ctx));
-for (const post of sorted) {
-  if (!existsSync(`images/blog/${post.slug}.jpg`)) throw new Error(`Missing images/blog/${post.slug}.jpg`);
-  mkdirSync(join(OUT, 'blog', post.slug), { recursive: true });
-  writeFileSync(join(OUT, 'blog', post.slug, 'index.html'), renderPost(post, sorted, ctx));
+for (const p of pages) {
+  const base = baseFor(p.file);
+  const html = fill(readFileSync(p.file, 'utf8'))
+    .replace(/<!-- build:tailwind -->[\s\S]*?<!-- \/build:tailwind -->/, `<link rel="stylesheet" href="${base}${assets.tailwind}" />`)
+    .replace(`"${base}assets/site.css"`, `"${base}${assets.site}"`)
+    .replace(`"${base}assets/main.js"`, `"${base}${assets.main}"`)
+    .replace(/<!-- Generated by scripts\/generate\.mjs[^\n]*-->\n/, '');
+  mkdirSync(join(OUT, dirname(p.file)), { recursive: true });
+  writeFileSync(join(OUT, p.file), html);
 }
-
-const xml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-writeFileSync(join(OUT, 'blog', 'rss.xml'), `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Nipun Mitra — Web Development Blog</title>
-    <link>${SITE_URL}/blog/</link>
-    <description>Guides on custom software, frontend websites, restaurant and booking websites, and web app development.</description>
-    <language>en</language>
-    <atom:link href="${SITE_URL}/blog/rss.xml" rel="self" type="application/rss+xml" />
-${sorted.map((p) => `    <item>
-      <title>${xml(p.title)}</title>
-      <link>${SITE_URL}/blog/${p.slug}/</link>
-      <guid>${SITE_URL}/blog/${p.slug}/</guid>
-      <pubDate>${new Date(p.date + 'T00:00:00Z').toUTCString()}</pubDate>
-      <description>${xml(p.description)}</description>
-    </item>`).join('\n')}
-  </channel>
-</rss>
-`);
+writeFileSync(join(OUT, '404.html'), fill(readFileSync('404.html', 'utf8')));
 
 // ---------- Static files ----------
 for (const f of [
@@ -112,23 +90,122 @@ for (const f of [
   cpSync(f, join(OUT, f), { recursive: true });
 }
 
-// ---------- robots.txt + sitemap.xml ----------
-writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+// ---------- RSS ----------
+const xml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+const url = (file) => fill(canonicalFor(file));
+mkdirSync(join(OUT, 'blog'), { recursive: true });
+writeFileSync(join(OUT, 'blog', 'rss.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nipun Mitra — Web Development Blog</title>
+    <link>${url('blog.html')}</link>
+    <description>Guides on custom software, frontend websites, restaurant and booking websites, and web app development.</description>
+    <language>en</language>
+    <atom:link href="${SITE_URL}/blog/rss.xml" rel="self" type="application/rss+xml" />
+${sorted.map((p) => `    <item>
+      <title>${xml(p.title)}</title>
+      <link>${url(`blog/${p.slug}.html`)}</link>
+      <guid>${url(`blog/${p.slug}.html`)}</guid>
+      <pubDate>${new Date(p.date + 'T00:00:00Z').toUTCString()}</pubDate>
+      <description>${xml(p.description)}</description>
+    </item>`).join('\n')}
+  </channel>
+</rss>
+`);
 
-const projectImages = ['cwskills', 'bmu', 'crystalvalet', 'sonyrangs', 'idesk360', 'cwticket', 'alzahra', 'technovision', 'alnoor'];
-const img = (path) => `    <image:image><image:loc>${SITE_URL}/${path}</image:loc></image:image>`;
-const url = (loc, lastmod, images = []) => `  <url>
-    <loc>${loc}</loc>
-    <lastmod>${lastmod}</lastmod>
-${images.map(img).join('\n')}
-  </url>`.replace(/\n\n/g, '\n');
+// ---------- robots.txt ----------
+// Search engines and AI assistants are explicitly welcome, so the site can show up in both.
+const aiBots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'];
+writeFileSync(join(OUT, 'robots.txt'), `# robots.txt — ${SITE_URL}
+User-agent: *
+Allow: /
+
+# AI search and assistants
+${aiBots.map((b) => `User-agent: ${b}\nAllow: /`).join('\n\n')}
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`);
+
+// ---------- llms.txt + llms-full.txt (https://llmstxt.org) ----------
+const text = (html) =>
+  html
+    .replace(/<h2[^>]*>([\s\S]*?)<\/h2>/g, '\n## $1\n')
+    .replace(/<h3[^>]*>([\s\S]*?)<\/h3>/g, '\n### $1\n')
+    .replace(/<li>([\s\S]*?)<\/li>/g, '- $1\n')
+    .replace(/<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (_, href, label) => `${label} (${/^https?:/.test(href) ? href : `${SITE_URL}/blog/${href}`.replace('/blog/../', '/')})`)
+    .replace(/<\/p>/g, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+    .replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+
+const projectsLd = JSON.parse(readFileSync('src/home-jsonld.json', 'utf8'))['@graph'].find((n) => n['@type'] === 'ItemList').itemListElement;
+const mainPages = pages.filter((p) => !p.file.startsWith('blog/'));
+const intro = `# Nipun Mitra
+
+> Software developer in Dhaka, Bangladesh with 3+ years of experience building fast, SEO-friendly websites and web apps with React, Next.js, TypeScript, Tailwind CSS, Laravel and WordPress. Currently a frontend developer at CodeWare Ltd. Offers custom software development, app development, UI/UX design, web design and development, and SEO and digital marketing.
+
+- Email: nipunmitra03@gmail.com
+- Phone / WhatsApp: +88 01761 227436 (https://wa.me/8801761227436)
+- GitHub: https://github.com/nipunmitra36
+- LinkedIn: https://www.linkedin.com/in/nipunmitra
+`;
+
+writeFileSync(join(OUT, 'llms.txt'), `${intro}
+## Pages
+
+${mainPages.map((p) => `- [${p.title}](${url(p.file)}): ${p.description}`).join('\n')}
+
+## Projects
+
+${projectsLd.map((i) => `- [${i.item.name}](${i.item.url})`).join('\n')}
+
+## Blog
+
+${sorted.map((p) => `- [${p.title}](${url(`blog/${p.slug}.html`)}): ${p.description}`).join('\n')}
+
+## Optional
+
+- [Full text of every article](${SITE_URL}/llms-full.txt)
+- [RSS feed](${SITE_URL}/blog/rss.xml)
+- [Sitemap](${SITE_URL}/sitemap.xml)
+`);
+
+writeFileSync(join(OUT, 'llms-full.txt'), `${intro}
+${sorted.map((p) => `---
+
+# ${p.title}
+
+URL: ${url(`blog/${p.slug}.html`)}
+Published: ${p.date}
+Topic: ${p.keyword}
+
+${text(p.html)}
+
+## Frequently asked questions
+
+${p.faq.map((f) => `### ${f.q}\n\n${f.a}`).join('\n\n')}
+`).join('\n')}`);
+
+// ---------- sitemap.xml ----------
+
+const projectImages = ['cwskills', 'bmu', 'crystalvalet', 'sonyrangs', 'idesk360', 'cwticket', 'alzahra', 'technovision', 'alnoor'].map((p) => `images/projects/${p}.jpg`);
+const imagesFor = (file) =>
+  file === 'index.html' ? ['og-image.jpg']
+  : file === 'projects.html' ? projectImages
+  : file.startsWith('blog/') ? [`images/blog/${file.slice(5, -5)}.jpg`]
+  : [];
 
 writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${url(`${SITE_URL}/`, BUILD_DATE, ['og-image.jpg', ...projectImages.map((p) => `images/projects/${p}.jpg`)])}
-${url(`${SITE_URL}/blog/`, BUILD_DATE)}
-${sorted.map((p) => url(`${SITE_URL}/blog/${p.slug}/`, BUILD_DATE > p.date ? BUILD_DATE : p.date, [`images/blog/${p.slug}.jpg`])).join('\n')}
+${pages.map((p) => [
+  '  <url>',
+  `    <loc>${url(p.file)}</loc>`,
+  `    <lastmod>${BUILD_DATE}</lastmod>`,
+  ...imagesFor(p.file).map((i) => `    <image:image><image:loc>${SITE_URL}/${i}</image:loc></image:image>`),
+  '  </url>',
+].join('\n')).join('\n')}
 </urlset>
 `);
 
-console.log(`Built ${OUT}/ for ${SITE_URL} — home, blog index, ${sorted.length} posts (${css.tailwind}, ${(tailwindCss.length / 1024).toFixed(1)} KB)`);
+console.log(`Built ${OUT}/ for ${SITE_URL} — ${pages.length} pages (${assets.tailwind}, ${(tailwindCss.length / 1024).toFixed(1)} KB)`);

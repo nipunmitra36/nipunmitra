@@ -1,0 +1,327 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{SITE_URL}}/#website",
+      "url": "{{SITE_URL}}/",
+      "name": "Nipun Mitra",
+      "description": "Portfolio of Nipun Mitra, software developer in Dhaka, Bangladesh.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "{{SITE_URL}}/#person"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "{{SITE_URL}}/#profilepage",
+      "url": "{{SITE_URL}}/",
+      "name": "Nipun Mitra | Software Developer",
+      "isPartOf": {
+        "@id": "{{SITE_URL}}/#website"
+      },
+      "about": {
+        "@id": "{{SITE_URL}}/#person"
+      },
+      "mainEntity": {
+        "@id": "{{SITE_URL}}/#person"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "{{SITE_URL}}/og-image.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "inLanguage": "en",
+      "dateModified": "{{BUILD_DATE}}"
+    },
+    {
+      "@type": "Person",
+      "@id": "{{SITE_URL}}/#person",
+      "name": "Nipun Mitra",
+      "givenName": "Nipun",
+      "familyName": "Mitra",
+      "jobTitle": "Software Developer",
+      "description": "Software developer with 3+ years of experience building responsive, performant web applications using React, Next.js and TypeScript.",
+      "url": "{{SITE_URL}}/",
+      "image": "{{SITE_URL}}/og-image.jpg",
+      "email": "mailto:nipunmitra03@gmail.com",
+      "telephone": "+8801761227436",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "+8801761227436",
+        "email": "nipunmitra03@gmail.com",
+        "url": "https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project.",
+        "availableLanguage": [
+          "English",
+          "Bengali"
+        ]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dhaka",
+        "addressCountry": "BD"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "CodeWare Limited",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dhaka",
+          "addressCountry": "BD"
+        }
+      },
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Northern University Bangladesh"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Magura Polytechnic Institute"
+        }
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Web Development with PHP & Laravel",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Interactive Cares",
+            "url": "https://interactivecares.com"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Frontend Development",
+          "credentialCategory": "certificate",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Mamurjor IT",
+            "url": "https://mamurjor.com"
+          }
+        }
+      ],
+      "knowsAbout": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "Tailwind CSS",
+        "HTML5",
+        "CSS3",
+        "Bootstrap",
+        "Laravel",
+        "Livewire",
+        "WordPress",
+        "Redux",
+        "REST APIs",
+        "Responsive web design",
+        "Web performance optimization",
+        "AI-integrated applications",
+        "UI/UX design",
+        "Search engine optimization (SEO)",
+        "Digital marketing"
+      ],
+      "knowsLanguage": [
+        {
+          "@type": "Language",
+          "name": "Bengali",
+          "alternateName": "bn"
+        },
+        {
+          "@type": "Language",
+          "name": "English",
+          "alternateName": "en"
+        }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom software development",
+            "url": "{{SITE_URL}}/blog/custom-software-development.html",
+            "provider": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "App development",
+            "url": "{{SITE_URL}}/blog/web-app-development.html",
+            "provider": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "UI/UX design",
+            "url": "{{SITE_URL}}/blog/ui-ux-design.html",
+            "provider": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Web design and development",
+            "url": "{{SITE_URL}}/blog/frontend-website-development.html",
+            "provider": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "SEO and digital marketing",
+            "url": "{{SITE_URL}}/blog/seo-for-small-business.html",
+            "provider": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        }
+      ],
+      "sameAs": [
+        "https://github.com/nipunmitra36",
+        "https://www.linkedin.com/in/nipunmitra"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "{{SITE_URL}}/#projects",
+      "name": "Key projects by Nipun Mitra",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "CW Skills – IT Training Platform",
+            "url": "https://cwskills.com",
+            "image": "{{SITE_URL}}/images/projects/cwskills.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Bangladesh Medical University – Official Website",
+            "url": "https://bmu.ac.bd",
+            "image": "{{SITE_URL}}/images/projects/bmu.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Crystal Valet – Car Valeting Ireland",
+            "url": "https://crystalvalet.ie",
+            "image": "{{SITE_URL}}/images/projects/crystalvalet.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Sony Rangs – Electronics E-Commerce",
+            "url": "https://sonyrangs.com",
+            "image": "{{SITE_URL}}/images/projects/sonyrangs.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "iDesk360 – SaaS Helpdesk Platform",
+            "url": "https://idesk360.com",
+            "image": "{{SITE_URL}}/images/projects/idesk360.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "CW Ticket System – Support Portal",
+            "url": "https://cwticketingsystem.com",
+            "image": "{{SITE_URL}}/images/projects/cwticket.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Al Zahra – Corporate Website",
+            "url": "https://alzahrabd.com",
+            "image": "{{SITE_URL}}/images/projects/alzahra.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Technovision BD – Corporate Website",
+            "url": "https://technovisionbd.com",
+            "image": "{{SITE_URL}}/images/projects/technovision.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Al Noor Customs – Company Website",
+            "url": "https://alnoorcustoms.com",
+            "image": "{{SITE_URL}}/images/projects/alnoor.jpg",
+            "creator": {
+              "@id": "{{SITE_URL}}/#person"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
