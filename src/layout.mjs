@@ -161,6 +161,7 @@ export function renderPage({ file, active, title, description, jsonLd, main, ogT
   <meta name="description" content="${esc(description)}" />
   <meta name="author" content="Nipun Mitra" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="google-site-verification" content="D8PaL5uJ0KoIl25mIFRq8a71Co-q1QxE6odppjHcIpk" />
   <link rel="canonical" href="${canonical}" />
   <meta name="theme-color" content="#04050d" />
   <meta name="color-scheme" content="dark" />
