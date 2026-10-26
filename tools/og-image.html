@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- Source for og-image.jpg (1200x630). Open at exactly 1200x630 and screenshot to regenerate. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OG image</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; box-sizing: border-box; }
+    body {
+      width: 1200px; height: 630px; overflow: hidden; position: relative;
+      font-family: 'Space Grotesk', sans-serif; color: #cbd5e1;
+      background:
+        radial-gradient(520px 520px at 88% 18%, rgba(139,92,246,.30), transparent 60%),
+        radial-gradient(460px 460px at 0% 70%, rgba(34,211,238,.16), transparent 60%),
+        radial-gradient(520px 520px at 65% 110%, rgba(244,114,182,.18), transparent 60%),
+        #04050d;
+    }
+    #stars { position: absolute; inset: 0; }
+    .content { position: absolute; left: 80px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; width: 680px; }
+    .kicker { font-size: 22px; letter-spacing: .3em; text-transform: uppercase; color: #22d3ee; font-weight: 600; }
+    h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 92px; line-height: 1; color: #fff; margin-top: 18px; }
+    h1 span { background: linear-gradient(90deg, #c4b5fd, #22d3ee 45%, #f472b6 95%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .role { font-size: 32px; color: #fff; font-weight: 500; margin-top: 22px; }
+    .stack { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .stack span { font-size: 22px; padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); color: #e2e8f0; }
+    .meta { margin-top: 30px; font-size: 22px; color: #94a3b8; }
+    .meta b { color: #fff; font-weight: 600; }
+    .planet { position: absolute; right: -40px; top: 40px; width: 420px; filter: drop-shadow(0 0 60px rgba(251,146,60,.35)); }
+    .moon { position: absolute; right: 360px; top: 30px; width: 120px; }
+    .astro { position: absolute; right: 120px; bottom: -10px; width: 300px; transform: rotate(-8deg); filter: drop-shadow(0 12px 40px rgba(167,139,250,.4)); }
+    .shade { position: absolute; right: -40px; top: 40px; width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 28%, transparent 40%, rgba(4,5,13,.5) 72%, rgba(4,5,13,.85) 86%, transparent 89%); }
+  </style>
+</head>
+<body>
+  <canvas id="stars" width="1200" height="630"></canvas>
+  <img class="planet" src="../planet-1.png" alt="" />
+  <div class="shade"></div>
+  <img class="moon" src="../planet-2.png" alt="" />
+  <img class="astro" src="../3d-astronaut.png" alt="" />
+  <div class="content">
+    <p class="kicker">Portfolio</p>
+    <h1>NIPUN <span>MITRA</span></h1>
+    <p class="role">Frontend Developer &amp; Software Developer</p>
+    <div class="stack"><span>React</span><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>Laravel</span></div>
+    <p class="meta"><b>3+ years</b> · <b>20+ websites</b> shipped · Dhaka, Bangladesh</p>
+  </div>
+  <script>
+    // Deterministic starfield so the image is identical every time it is rendered.
+    const ctx = document.getElementById('stars').getContext('2d');
+    let seed = 7;
+    const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 260; i++) {
+      ctx.globalAlpha = .25 + rand() * .75;
+      ctx.fillStyle = ['#fff', '#c4b5fd', '#a5f3fc', '#fbcfe8'][Math.floor(rand() * 4)];
+      ctx.beginPath(); ctx.arc(rand() * 1200, rand() * 630, rand() * 1.4 + .3, 0, 7); ctx.fill();
+    }
+  </script>
+</body>
+</html>

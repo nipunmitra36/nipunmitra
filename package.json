@@ -1,0 +1,14 @@
+{
+  "name": "nipun-mitra-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio of Nipun Mitra, software developer.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "npx serve@14.2.4 dist"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.5"
+  }
+}

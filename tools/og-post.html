@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- Share image for a blog post (1200x630). Usage: og-post.html?kicker=...&title=... then screenshot. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Post image</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; box-sizing: border-box; }
+    body {
+      width: 1200px; height: 630px; overflow: hidden; position: relative; font-family: 'Space Grotesk', sans-serif;
+      background:
+        radial-gradient(520px 520px at 90% 15%, rgba(139,92,246,.32), transparent 60%),
+        radial-gradient(460px 460px at 0% 85%, rgba(34,211,238,.16), transparent 60%),
+        radial-gradient(520px 520px at 60% 120%, rgba(244,114,182,.18), transparent 60%),
+        #04050d;
+    }
+    #stars { position: absolute; inset: 0; }
+    .content { position: absolute; left: 80px; top: 70px; bottom: 70px; width: 760px; display: flex; flex-direction: column; }
+    .kicker { display: inline-block; align-self: flex-start; padding: 10px 20px; border-radius: 999px; font-size: 22px; font-weight: 600;
+              letter-spacing: .12em; text-transform: uppercase; color: #22d3ee; border: 1px solid rgba(34,211,238,.35); background: rgba(34,211,238,.08); }
+    h1 { margin-top: 34px; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 58px; line-height: 1.12; color: #fff; }
+    .author { margin-top: auto; display: flex; align-items: center; gap: 16px; font-size: 24px; color: #cbd5e1; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: 'Orbitron'; font-weight: 900; font-size: 20px; color: #fff;
+              background: linear-gradient(135deg, #8b5cf6, #22d3ee); }
+    .planet { position: absolute; right: -90px; top: 120px; width: 470px; filter: drop-shadow(0 0 60px rgba(139,92,246,.35)); }
+  </style>
+</head>
+<body>
+  <canvas id="stars" width="1200" height="630"></canvas>
+  <img class="planet" id="planet" src="../planet-1.png" alt="" />
+  <div class="content">
+    <span class="kicker" id="kicker"></span>
+    <h1 id="title"></h1>
+    <div class="author"><span class="avatar">NM</span><span><b style="color:#fff">Nipun Mitra</b> · Frontend &amp; Software Developer</span></div>
+  </div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    document.getElementById('kicker').textContent = q.get('kicker') || 'Blog';
+    document.getElementById('title').textContent = q.get('title') || 'Title';
+    if (q.get('planet')) document.getElementById('planet').src = '../' + q.get('planet');
+    const ctx = document.getElementById('stars').getContext('2d');
+    let seed = +(q.get('seed') || 3);
+    const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 240; i++) {
+      ctx.globalAlpha = .25 + rand() * .75;
+      ctx.fillStyle = ['#fff', '#c4b5fd', '#a5f3fc', '#fbcfe8'][Math.floor(rand() * 4)];
+      ctx.beginPath(); ctx.arc(rand() * 1200, rand() * 630, rand() * 1.4 + .3, 0, 7); ctx.fill();
+    }
+  </script>
+</body>
+</html>
