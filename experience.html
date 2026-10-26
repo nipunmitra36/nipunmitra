@@ -80,24 +80,21 @@
 }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-  </noscript>
+  <!-- build:preload-fonts (the build preloads the self-hosted fonts; skipped here because browsers block it for file:// pages) -->
 
   <!-- Tailwind CDN for local preview; `npm run build` swaps this block for a compiled stylesheet. -->
   <!-- build:tailwind -->
   <script src="https://cdn.tailwindcss.com/3.4.5"></script>
   <script src="assets/tailwind.config.js"></script>
   <!-- /build:tailwind -->
+  <!-- build:inline-css (fonts.css + site.css are inlined by the build) -->
+  <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="assets/site.css" />
+  <!-- /build:inline-css -->
+
+  <!-- Icon font: not needed for first paint, so it loads without blocking. -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" /></noscript>
 </head>
 
 <body class="relative font-sans text-slate-300 antialiased">
@@ -106,22 +103,22 @@
 
   <div id="planets" class="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
     <div class="bg-planet" data-speed="-0.12" style="top:110px; right:2%; width:90px; height:90px; --w:22s">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="90px" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.18" style="top:38%; left:-70px; width:130px; height:130px; --w:28s; --wd:-6s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="130px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.06" style="top:50%; right:-130px; width:340px; height:340px; --w:45s; opacity:0.7">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="340px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.15" style="top:63%; right:12%; width:90px; height:90px; --w:24s; --wd:-8s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="90px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.14" style="top:72%; left:-60px; width:170px; height:170px; --w:34s; --wd:-15s; opacity:0.85">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="170px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.2" style="top:88%; right:8%; width:70px; height:70px; --w:20s; --wd:-4s">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="70px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
     </div>
   </div>
 
@@ -201,7 +198,7 @@
             <div class="glass glow-border rounded-3xl p-6 sm:p-8">
               <div class="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 class="font-display text-xl font-bold text-white">Frontend Developer</h3>
+                  <h2 class="font-display text-xl font-bold text-white">Frontend Developer</h2>
                   <p class="mt-1 text-nebula-cyan">CodeWare Ltd · Dhaka</p>
                 </div>
                 <span class="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 font-mono text-xs text-emerald-300">Aug 2022 – Present</span>
@@ -218,7 +215,7 @@
             <div class="glass glow-border rounded-3xl p-6 sm:p-8">
               <div class="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 class="font-display text-xl font-bold text-white">Frontend Developer</h3>
+                  <h2 class="font-display text-xl font-bold text-white">Frontend Developer</h2>
                   <p class="mt-1 text-nebula-cyan">Mamurjor IT · Dhaka</p>
                 </div>
                 <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-slate-300">Jun 2021 – Dec 2022</span>
@@ -244,7 +241,7 @@
           </div>
           <div class="flex flex-wrap gap-3">
             <a href="contact.html" class="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-nebula-violet to-nebula-cyan px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,.5)]">Get in touch <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
-            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
+            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-[#052e16] transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -297,7 +294,7 @@
         </ul>
       </div>
     </div>
-    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-500">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
+    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-400">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
   </footer>
 
   <!-- WhatsApp chat button -->
@@ -307,7 +304,7 @@
     <span class="hidden pr-1 text-sm font-semibold sm:group-hover:inline">Chat on WhatsApp</span>
   </a>
 
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/vendor/lenis-1.1.13.min.js" defer></script>
+  <script src="assets/main.js" defer></script>
 </body>
 </html>

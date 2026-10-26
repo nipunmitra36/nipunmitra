@@ -24,6 +24,13 @@ export const MENU = [
 ];
 
 export const baseFor = (file) => '../'.repeat(file.split('/').length - 1);
+
+// The first image of a grid is visible on load, so don't lazy-load it. Normal priority on purpose:
+// it's rarely the LCP element and shouldn't compete with the one that is.
+export const eagerFirst = (html, count = 1) => {
+  let i = 0;
+  return html.replace(/ loading="lazy" decoding="async"/g, (m) => (i++ >= count ? m : ' decoding="async"'));
+};
 export const canonicalFor = (file) => (file === 'index.html' ? `${SITE}/` : `${SITE}/${file}`);
 
 export const person = () => ({ '@id': `${SITE}/#person` });
@@ -103,7 +110,7 @@ ${posts.slice(0, 6).map((p) => `          <li><a href="${base}blog/${p.slug}.htm
         </ul>
       </div>
     </div>
-    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-500">© {{YEAR}} Nipun Mitra. Designed &amp; built in Dhaka.</p>
+    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-400">© {{YEAR}} Nipun Mitra. Designed &amp; built in Dhaka.</p>
   </footer>
 
   <!-- WhatsApp chat button -->
@@ -115,6 +122,7 @@ ${posts.slice(0, 6).map((p) => `          <li><a href="${base}blog/${p.slug}.htm
 }
 
 // Drifting planets behind the content — real transparent PNGs (parallax is handled in main.js).
+// Only the first one (top of the page, often the LCP element on phones) loads eagerly.
 // The wrapper drifts (`wander`) and the image slowly turns; a hue shift gives each copy its own colour.
 const PLANETS = (home) => [
   { img: 'planet-2.png', pos: home ? 'top:120px; left:5%' : 'top:110px; right:2%', size: home ? 120 : 90, speed: -0.12, w: 22, spin: '200s linear infinite reverse' },
@@ -127,11 +135,11 @@ const PLANETS = (home) => [
 
 const planets = (base, home) => `
   <div id="planets" class="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
-${PLANETS(home).map((p) => {
+${PLANETS(home).map((p, i) => {
   const filter = [p.hue && `hue-rotate(${p.hue}deg)`, p.sat && `saturate(${p.sat})`].filter(Boolean).join(' ');
   const anim = p.spin.startsWith('tilt') ? p.spin : `spin ${p.spin}`;
   return `    <div class="bg-planet" data-speed="${p.speed}" style="${p.pos}; width:${p.size}px; height:${p.size}px; --w:${p.w}s${p.wd ? `; --wd:${p.wd}s` : ''}${p.opacity ? `; opacity:${p.opacity}` : ''}">
-      <img src="${base}${p.img}" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: ${anim}${filter ? `; filter: ${filter}` : ''}" draggable="false" />
+      <img src="${base}${p.img}" alt="" width="500" height="500" sizes="${p.size}px"${i === 0 ? '' : ' loading="lazy"'} decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: ${anim}${filter ? `; filter: ${filter}` : ''}" draggable="false" />
     </div>`;
 }).join('\n')}
   </div>`;
@@ -196,24 +204,21 @@ ${extraMeta}
 ${JSON.stringify({ '@context': 'https://schema.org', ...jsonLd }, null, 2)}
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-  </noscript>
+  <!-- build:preload-fonts (the build preloads the self-hosted fonts; skipped here because browsers block it for file:// pages) -->
 
   <!-- Tailwind CDN for local preview; \`npm run build\` swaps this block for a compiled stylesheet. -->
   <!-- build:tailwind -->
   <script src="https://cdn.tailwindcss.com/3.4.5"></script>
   <script src="${base}assets/tailwind.config.js"></script>
   <!-- /build:tailwind -->
+  <!-- build:inline-css (fonts.css + site.css are inlined by the build) -->
+  <link rel="stylesheet" href="${base}assets/fonts.css" />
   <link rel="stylesheet" href="${base}assets/site.css" />
+  <!-- /build:inline-css -->
+
+  <!-- Icon font: not needed for first paint, so it loads without blocking. -->
+  <link rel="stylesheet" href="${base}assets/vendor/fontawesome-6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="${base}assets/vendor/fontawesome-6.5.1/css/all.min.css" /></noscript>
 </head>
 
 <body class="relative font-sans text-slate-300 antialiased">
@@ -227,8 +232,8 @@ ${main}
   </main>
 ${footer(base)}
 
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="${base}assets/main.js"></script>
+  <script src="${base}assets/vendor/lenis-1.1.13.min.js" defer></script>
+  <script src="${base}assets/main.js" defer></script>
 </body>
 </html>
 `;
@@ -247,7 +252,7 @@ export const ctaBand = (base) => `
           </div>
           <div class="flex flex-wrap gap-3">
             <a href="${base}contact.html" class="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-nebula-violet to-nebula-cyan px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,.5)]">Get in touch <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
-            <a href="${WA}" target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
+            <a href="${WA}" target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-[#052e16] transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
           </div>
         </div>
       </div>

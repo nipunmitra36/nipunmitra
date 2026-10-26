@@ -1,9 +1,12 @@
 // Shared behaviour for every page. Each block only runs if its elements exist on the page.
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- Smooth scroll ---------- */
+const finePointer = window.matchMedia('(pointer: fine)').matches; // mouse/trackpad (not touch)
+
+/* ---------- Smooth scroll ----------
+   Only for mouse wheels — touch scrolling is already smooth, and skipping it saves main-thread work on phones. */
 let lenis = null;
-if (window.Lenis && !reduceMotion) {
+if (window.Lenis && !reduceMotion && finePointer) {
   lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
   (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
 }
@@ -19,7 +22,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
 (() => {
   const c = document.getElementById('space');
   const ctx = c.getContext('2d');
-  const dpr = Math.min(devicePixelRatio, 2);
+  // Fewer stars and a lower pixel ratio on phones keep the animation cheap.
+  const dpr = Math.min(devicePixelRatio, finePointer ? 2 : 1.5);
   let w, h, stars = [];
   const colors = ['#ffffff', '#c4b5fd', '#a5f3fc', '#fbcfe8'];
 
@@ -27,7 +31,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
     w = c.width = innerWidth * dpr;
     h = c.height = innerHeight * dpr;
     c.style.width = innerWidth + 'px'; c.style.height = innerHeight + 'px';
-    const count = Math.min(380, Math.floor(innerWidth * innerHeight / 3800));
+    const count = Math.min(finePointer ? 300 : 140, Math.floor(innerWidth * innerHeight / 4500));
     stars = Array.from({ length: count }, () => {
       const blink = Math.random() < .22;
       return {
@@ -41,9 +45,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
       };
     });
   }
-  addEventListener('resize', resize); resize();
+  // Resizing clears the canvas, so repaint straight away if the animation loop isn't running.
+  addEventListener('resize', () => { resize(); if (!started || reduceMotion) draw(last + 32); }); resize();
   // Stars stay put; most twinkle, some blink on and off with a little sparkle.
-  function draw() {
+  // Twinkling is slow, so ~30 fps looks identical to 60 fps at half the cost.
+  let last = 0;
+  function draw(now = 0) {
+    if (now - last < 32) { requestAnimationFrame(draw); return; }
+    last = now;
     ctx.clearRect(0, 0, w, h);
     for (const s of stars) {
       s.t += s.s;
@@ -62,19 +71,41 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
         ctx.stroke();
       }
     }
-    if (!reduceMotion) requestAnimationFrame(draw);
+    if (!reduceMotion && started) requestAnimationFrame(draw);
   }
-  draw();
+  // Paint the stars once right away, then start twinkling after the page has loaded and gone idle.
+  let started = false;
+  draw(32);
+  const start = () => { started = true; requestAnimationFrame(draw); };
+  addEventListener('load', () => ('requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 2000 }) : setTimeout(start, 600)));
 })();
 
-/* ---------- Planet parallax ---------- */
+/* ---------- Scroll effects: planet parallax + timeline rocket ----------
+   Batched into one animation frame: read layout first, then write styles,
+   so the browser never has to recalculate layout mid-frame (no forced reflow). */
 (() => {
-  const planets = [...document.querySelectorAll('.bg-planet')];
-  function update() {
-    const y = scrollY;
-    planets.forEach(p => { p.style.translate = `0 ${y * +p.dataset.speed}px`; });
+  const planets = reduceMotion ? [] : [...document.querySelectorAll('.bg-planet')];
+  const tl = document.getElementById('timeline');
+  const fill = document.getElementById('trajectory-fill'), rocket = document.getElementById('rocket');
+  if (!planets.length && !tl) return;
+  let queued = false;
+  function frame() {
+    queued = false;
+    // read
+    const y = scrollY, vh = innerHeight;
+    const r = tl && tl.getBoundingClientRect();
+    // write
+    for (const p of planets) p.style.translate = `0 ${y * +p.dataset.speed}px`;
+    if (r) {
+      const progress = Math.min(1, Math.max(0, (vh * .6 - r.top) / r.height));
+      fill.style.height = (progress * 100) + '%';
+      rocket.style.top = `calc(${progress * 100}% - 12px)`;
+    }
   }
-  if (!reduceMotion) { addEventListener('scroll', update, { passive: true }); update(); }
+  const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(frame); } };
+  addEventListener('scroll', schedule, { passive: true });
+  addEventListener('resize', schedule);
+  schedule();
 })();
 
 /* ---------- Projects ---------- */
@@ -125,19 +156,6 @@ const io = new IntersectionObserver(entries => entries.forEach(en => {
   io.unobserve(en.target);
 }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-/* ---------- Timeline rocket ---------- */
-(() => {
-  const tl = document.getElementById('timeline'), fill = document.getElementById('trajectory-fill'), rocket = document.getElementById('rocket');
-  if (!tl) return;
-  function update() {
-    const r = tl.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / r.height));
-    fill.style.height = (p * 100) + '%';
-    rocket.style.top = `calc(${p * 100}% - 12px)`;
-  }
-  addEventListener('scroll', update, { passive: true }); update();
-})();
 
 /* ---------- Mobile menu ---------- */
 const menu = document.getElementById('mobile-menu');

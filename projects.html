@@ -207,24 +207,21 @@
 }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-  </noscript>
+  <!-- build:preload-fonts (the build preloads the self-hosted fonts; skipped here because browsers block it for file:// pages) -->
 
   <!-- Tailwind CDN for local preview; `npm run build` swaps this block for a compiled stylesheet. -->
   <!-- build:tailwind -->
   <script src="https://cdn.tailwindcss.com/3.4.5"></script>
   <script src="assets/tailwind.config.js"></script>
   <!-- /build:tailwind -->
+  <!-- build:inline-css (fonts.css + site.css are inlined by the build) -->
+  <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="assets/site.css" />
+  <!-- /build:inline-css -->
+
+  <!-- Icon font: not needed for first paint, so it loads without blocking. -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" /></noscript>
 </head>
 
 <body class="relative font-sans text-slate-300 antialiased">
@@ -233,22 +230,22 @@
 
   <div id="planets" class="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
     <div class="bg-planet" data-speed="-0.12" style="top:110px; right:2%; width:90px; height:90px; --w:22s">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="90px" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.18" style="top:38%; left:-70px; width:130px; height:130px; --w:28s; --wd:-6s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="130px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.06" style="top:50%; right:-130px; width:340px; height:340px; --w:45s; opacity:0.7">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="340px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.15" style="top:63%; right:12%; width:90px; height:90px; --w:24s; --wd:-8s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="90px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.14" style="top:72%; left:-60px; width:170px; height:170px; --w:34s; --wd:-15s; opacity:0.85">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="170px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.2" style="top:88%; right:8%; width:70px; height:70px; --w:20s; --wd:-4s">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="70px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
     </div>
   </div>
 
@@ -312,13 +309,13 @@
           <a href="https://cwskills.com" target="_blank" rel="noopener" data-cat="next" style="--h:265"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/cwskills.jpg" alt="CW Skills website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/cwskills-21de148d-400.webp" srcset="images/opt/cwskills-21de148d-400.webp 400w, images/opt/cwskills-21de148d-800.webp 800w, images/opt/cwskills-21de148d-1200.webp 1200w" alt="CW Skills IT training platform homepage, built with Next.js and Redux" width="1200" height="630" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(265,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(265,90%,72%)">IT Training Platform</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">CW Skills</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">CW Skills</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Professional IT training portal built with Next.js and Redux.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Next.js</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">TypeScript</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Redux</span>
@@ -332,13 +329,13 @@
           <a href="https://bmu.ac.bd" target="_blank" rel="noopener" data-cat="laravel" style="--h:190"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/bmu.jpg" alt="Bangladesh Medical University website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/bmu-a1bd81e8-400.webp" srcset="images/opt/bmu-a1bd81e8-400.webp 400w, images/opt/bmu-a1bd81e8-800.webp 800w, images/opt/bmu-a1bd81e8-1200.webp 1200w" alt="Bangladesh Medical University official website homepage, built with Laravel and Livewire" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(190,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(190,90%,72%)">Official Website</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Bangladesh Medical University</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">Bangladesh Medical University</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Official website for Bangladesh's premier medical university, built with Laravel/Livewire.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Laravel</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Livewire</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">JavaScript</span>
@@ -352,13 +349,13 @@
           <a href="https://crystalvalet.ie" target="_blank" rel="noopener" data-cat="next" style="--h:205"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/crystalvalet.jpg" alt="Crystal Valet website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/crystalvalet-0845f8b9-400.webp" srcset="images/opt/crystalvalet-0845f8b9-400.webp 400w, images/opt/crystalvalet-0845f8b9-800.webp 800w, images/opt/crystalvalet-0845f8b9-1200.webp 1200w" alt="Crystal Valet car valeting and booking website homepage, built with Next.js" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(205,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(205,90%,72%)">Car Valeting · Ireland</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Crystal Valet</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">Crystal Valet</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Conversion-focused marketing & booking site for an Irish car valeting business.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Next.js</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">TypeScript</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Redux</span>
@@ -372,13 +369,13 @@
           <a href="https://sonyrangs.com" target="_blank" rel="noopener" data-cat="wp" style="--h:340"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/sonyrangs.jpg" alt="Sony Rangs website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/sonyrangs-ec80e039-400.webp" srcset="images/opt/sonyrangs-ec80e039-400.webp 400w, images/opt/sonyrangs-ec80e039-800.webp 800w, images/opt/sonyrangs-ec80e039-1200.webp 1200w" alt="Sony Rangs electronics e-commerce store homepage, built with WordPress and WooCommerce" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(340,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(340,90%,72%)">Electronics E-Commerce</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Sony Rangs</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">Sony Rangs</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Electronics e-commerce store built with WordPress and PHP.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">WordPress</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">PHP</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">WooCommerce</span>
@@ -392,13 +389,13 @@
           <a href="https://idesk360.com" target="_blank" rel="noopener" data-cat="next" style="--h:165"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/idesk360.jpg" alt="iDesk360 website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/idesk360-f45d59eb-400.webp" srcset="images/opt/idesk360-f45d59eb-400.webp 400w, images/opt/idesk360-f45d59eb-800.webp 800w, images/opt/idesk360-f45d59eb-1200.webp 1200w" alt="iDesk360 SaaS helpdesk platform homepage, built with Next.js and TypeScript" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(165,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(165,90%,72%)">SaaS Helpdesk Platform</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">iDesk360</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">iDesk360</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">SaaS helpdesk platform built with Next.js and TypeScript.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Next.js</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">TypeScript</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span>
@@ -412,13 +409,13 @@
           <a href="https://cwticketingsystem.com" target="_blank" rel="noopener" data-cat="next" style="--h:290"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/cwticket.jpg" alt="CW Ticket System website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/cwticket-1ff0e54b-400.webp" srcset="images/opt/cwticket-1ff0e54b-400.webp 400w, images/opt/cwticket-1ff0e54b-800.webp 800w, images/opt/cwticket-1ff0e54b-1200.webp 1200w" alt="CW Ticket System homepage, a ticketing platform built with Next.js and TypeScript" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(290,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(290,90%,72%)">Support Portal</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">CW Ticket System</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">CW Ticket System</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Support ticketing portal with ticket creation and admin management.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Next.js</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">TypeScript</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span>
@@ -432,13 +429,13 @@
           <a href="https://alzahrabd.com" target="_blank" rel="noopener" data-cat="laravel" style="--h:30"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/alzahra.jpg" alt="Al Zahra website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/alzahra-8bc6d612-400.webp" srcset="images/opt/alzahra-8bc6d612-400.webp 400w, images/opt/alzahra-8bc6d612-800.webp 800w, images/opt/alzahra-8bc6d612-1200.webp 1200w" alt="Al Zahra corporate website homepage, built with Laravel and Tailwind CSS" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(30,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(30,90%,72%)">Corporate Website</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Al Zahra</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">Al Zahra</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Corporate website built with Laravel and Tailwind CSS.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Laravel</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">PHP</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span>
@@ -452,13 +449,13 @@
           <a href="https://technovisionbd.com" target="_blank" rel="noopener" data-cat="next" style="--h:225"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/technovision.jpg" alt="Technovision BD website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/technovision-a81a55ef-400.webp" srcset="images/opt/technovision-a81a55ef-400.webp 400w, images/opt/technovision-a81a55ef-800.webp 800w, images/opt/technovision-a81a55ef-1200.webp 1200w" alt="Technovision BD corporate website homepage, built with Next.js" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(225,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(225,90%,72%)">Corporate Website</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Technovision BD</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">Technovision BD</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Corporate website built with Next.js and TypeScript.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Next.js</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">TypeScript</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span>
@@ -472,13 +469,13 @@
           <a href="https://alnoorcustoms.com" target="_blank" rel="noopener" data-cat="wp" style="--h:140"
           class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
           <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img src="images/projects/alnoor.jpg" alt="Al Noor Customs website preview" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
+          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/alnoor-ecde1812-400.webp" srcset="images/opt/alnoor-ecde1812-400.webp 400w, images/opt/alnoor-ecde1812-800.webp 800w, images/opt/alnoor-ecde1812-1200.webp 1200w" alt="Al Noor Customs company website homepage, built with WordPress" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
           </div>
           <div class="relative flex flex-1 flex-col p-6">
           <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(140,90%,60%,.12)"></div>
           <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(140,90%,72%)">Company Website</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Al Noor Customs</h3>
+          <h2 class="relative mt-1 font-display text-lg font-bold text-white">Al Noor Customs</h2>
           <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Company website built with WordPress and PHP.</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
           <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">WordPress</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">PHP</span>
@@ -504,7 +501,7 @@
           </div>
           <div class="flex flex-wrap gap-3">
             <a href="contact.html" class="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-nebula-violet to-nebula-cyan px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,.5)]">Get in touch <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
-            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
+            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-[#052e16] transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -557,7 +554,7 @@
         </ul>
       </div>
     </div>
-    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-500">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
+    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-400">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
   </footer>
 
   <!-- WhatsApp chat button -->
@@ -567,7 +564,7 @@
     <span class="hidden pr-1 text-sm font-semibold sm:group-hover:inline">Chat on WhatsApp</span>
   </a>
 
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/vendor/lenis-1.1.13.min.js" defer></script>
+  <script src="assets/main.js" defer></script>
 </body>
 </html>

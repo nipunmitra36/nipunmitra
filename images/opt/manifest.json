@@ -1,0 +1,448 @@
+{
+  "planet-1.png": {
+    "width": 500,
+    "height": 500,
+    "variants": [
+      {
+        "w": 160,
+        "file": "images/opt/planet-1-a9efd819-160.webp"
+      },
+      {
+        "w": 320,
+        "file": "images/opt/planet-1-a9efd819-320.webp"
+      },
+      {
+        "w": 500,
+        "file": "images/opt/planet-1-a9efd819-500.webp"
+      }
+    ]
+  },
+  "planet-2.png": {
+    "width": 500,
+    "height": 500,
+    "variants": [
+      {
+        "w": 160,
+        "file": "images/opt/planet-2-6ad90751-160.webp"
+      },
+      {
+        "w": 320,
+        "file": "images/opt/planet-2-6ad90751-320.webp"
+      },
+      {
+        "w": 500,
+        "file": "images/opt/planet-2-6ad90751-500.webp"
+      }
+    ]
+  },
+  "planet-3.png": {
+    "width": 500,
+    "height": 500,
+    "variants": [
+      {
+        "w": 160,
+        "file": "images/opt/planet-3-b1d0c119-160.webp"
+      },
+      {
+        "w": 320,
+        "file": "images/opt/planet-3-b1d0c119-320.webp"
+      },
+      {
+        "w": 500,
+        "file": "images/opt/planet-3-b1d0c119-500.webp"
+      }
+    ]
+  },
+  "3d-astronaut.png": {
+    "width": 500,
+    "height": 500,
+    "variants": [
+      {
+        "w": 160,
+        "file": "images/opt/3d-astronaut-b3720fb3-160.webp"
+      },
+      {
+        "w": 320,
+        "file": "images/opt/3d-astronaut-b3720fb3-320.webp"
+      },
+      {
+        "w": 500,
+        "file": "images/opt/3d-astronaut-b3720fb3-500.webp"
+      }
+    ]
+  },
+  "astronaut-in-spacesuit.png": {
+    "width": 408,
+    "height": 612,
+    "variants": [
+      {
+        "w": 200,
+        "file": "images/opt/astronaut-in-spacesuit-95969ab5-200.webp"
+      },
+      {
+        "w": 408,
+        "file": "images/opt/astronaut-in-spacesuit-95969ab5-408.webp"
+      }
+    ]
+  },
+  "images/projects/alnoor.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/alnoor-ecde1812-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/alnoor-ecde1812-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/alnoor-ecde1812-1200.webp"
+      }
+    ]
+  },
+  "images/projects/alzahra.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/alzahra-8bc6d612-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/alzahra-8bc6d612-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/alzahra-8bc6d612-1200.webp"
+      }
+    ]
+  },
+  "images/projects/bmu.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/bmu-a1bd81e8-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/bmu-a1bd81e8-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/bmu-a1bd81e8-1200.webp"
+      }
+    ]
+  },
+  "images/projects/crystalvalet.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/crystalvalet-0845f8b9-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/crystalvalet-0845f8b9-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/crystalvalet-0845f8b9-1200.webp"
+      }
+    ]
+  },
+  "images/projects/cwskills.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/cwskills-21de148d-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/cwskills-21de148d-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/cwskills-21de148d-1200.webp"
+      }
+    ]
+  },
+  "images/projects/cwticket.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/cwticket-1ff0e54b-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/cwticket-1ff0e54b-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/cwticket-1ff0e54b-1200.webp"
+      }
+    ]
+  },
+  "images/projects/idesk360.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/idesk360-f45d59eb-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/idesk360-f45d59eb-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/idesk360-f45d59eb-1200.webp"
+      }
+    ]
+  },
+  "images/projects/sonyrangs.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/sonyrangs-ec80e039-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/sonyrangs-ec80e039-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/sonyrangs-ec80e039-1200.webp"
+      }
+    ]
+  },
+  "images/projects/technovision.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/technovision-a81a55ef-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/technovision-a81a55ef-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/technovision-a81a55ef-1200.webp"
+      }
+    ]
+  },
+  "images/blog/booking-website-development.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/booking-website-development-31b9b96c-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/booking-website-development-31b9b96c-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/booking-website-development-31b9b96c-1200.webp"
+      }
+    ]
+  },
+  "images/blog/custom-software-development.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/custom-software-development-32c75213-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/custom-software-development-32c75213-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/custom-software-development-32c75213-1200.webp"
+      }
+    ]
+  },
+  "images/blog/frontend-website-development.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/frontend-website-development-3633f349-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/frontend-website-development-3633f349-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/frontend-website-development-3633f349-1200.webp"
+      }
+    ]
+  },
+  "images/blog/hire-a-web-developer.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/hire-a-web-developer-33b66f36-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/hire-a-web-developer-33b66f36-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/hire-a-web-developer-33b66f36-1200.webp"
+      }
+    ]
+  },
+  "images/blog/how-to-become-a-frontend-developer.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/how-to-become-a-frontend-developer-d539e645-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/how-to-become-a-frontend-developer-d539e645-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/how-to-become-a-frontend-developer-d539e645-1200.webp"
+      }
+    ]
+  },
+  "images/blog/restaurant-website-development.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/restaurant-website-development-dc5dfb03-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/restaurant-website-development-dc5dfb03-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/restaurant-website-development-dc5dfb03-1200.webp"
+      }
+    ]
+  },
+  "images/blog/sell-online-in-bangladesh.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/sell-online-in-bangladesh-f82201c3-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/sell-online-in-bangladesh-f82201c3-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/sell-online-in-bangladesh-f82201c3-1200.webp"
+      }
+    ]
+  },
+  "images/blog/seo-for-small-business.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/seo-for-small-business-9815ee7f-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/seo-for-small-business-9815ee7f-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/seo-for-small-business-9815ee7f-1200.webp"
+      }
+    ]
+  },
+  "images/blog/ui-ux-design.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/ui-ux-design-0da342d8-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/ui-ux-design-0da342d8-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/ui-ux-design-0da342d8-1200.webp"
+      }
+    ]
+  },
+  "images/blog/web-app-development.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/web-app-development-81d18f5e-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/web-app-development-81d18f5e-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/web-app-development-81d18f5e-1200.webp"
+      }
+    ]
+  },
+  "images/blog/web-development-trends-2026.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/web-development-trends-2026-d55dfc67-400.webp"
+      },
+      {
+        "w": 800,
+        "file": "images/opt/web-development-trends-2026-d55dfc67-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "images/opt/web-development-trends-2026-d55dfc67-1200.webp"
+      }
+    ]
+  }
+}

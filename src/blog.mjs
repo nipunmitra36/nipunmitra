@@ -1,7 +1,7 @@
 // Blog index and article pages. Rendered to plain HTML by scripts/generate.mjs,
 // so search engines get the full content without running JavaScript.
 
-import { SITE, WA, esc, person, breadcrumbs, canonicalFor } from './layout.mjs';
+import { SITE, WA, esc, person, breadcrumbs, canonicalFor, eagerFirst } from './layout.mjs';
 
 const formatDate = (iso) =>
   new Date(iso + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -18,13 +18,13 @@ export function postCard(p, base, headingTag = 'h2') {
           <article class="reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl transition duration-500 hover:-translate-y-1">
             <a href="${base}blog/${p.slug}.html" class="absolute inset-0 z-10" aria-label="${esc(p.title)}"></a>
             <div class="aspect-[1200/630] overflow-hidden">
-              <img src="${base}images/blog/${p.slug}.jpg" alt="${esc(p.title)}" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="${base}images/blog/${p.slug}.jpg" alt="" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             </div>
             <div class="flex flex-1 flex-col p-6">
               <p class="text-xs font-semibold uppercase tracking-widest text-nebula-cyan">${esc(p.category)}</p>
               <${headingTag} class="mt-2 font-display text-lg font-bold leading-snug text-white">${esc(p.title)}</${headingTag}>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">${esc(p.excerpt)}</p>
-              <p class="mt-5 flex items-center gap-3 text-xs text-slate-500">
+              <p class="mt-5 flex items-center gap-3 text-xs text-slate-400">
                 <time datetime="${p.date}">${formatDate(p.date)}</time><span aria-hidden="true">·</span><span>${readingTime(p.html)} min read</span>
               </p>
             </div>
@@ -32,7 +32,7 @@ export function postCard(p, base, headingTag = 'h2') {
 }
 
 const crumbs = (base, items) => `
-        <nav aria-label="Breadcrumb" class="mb-6 text-sm text-slate-500">
+        <nav aria-label="Breadcrumb" class="mb-6 text-sm text-slate-400">
           <ol class="flex flex-wrap items-center gap-2">
             ${items.map(([label, href], i) => (i < items.length - 1
               ? `<li><a href="${base}${href}" class="hover:text-white">${esc(label)}</a></li><li aria-hidden="true">/</li>`
@@ -81,7 +81,7 @@ export function blogIndexPage(posts) {
         <h1 class="mt-3 font-display text-4xl font-black leading-tight text-white sm:text-6xl">Web development <span class="text-gradient">guides</span></h1>
         <p class="mt-5 max-w-2xl text-lg leading-relaxed text-slate-400">Practical, no-nonsense articles on custom software, web and app development, UI/UX design, SEO, selling online, tech trends and building a developer career.</p>
 
-        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">${posts.map((p) => postCard(p, '')).join('')}
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">${eagerFirst(posts.map((p) => postCard(p, '')).join(''))}
         </div>
       </div>
     </section>`,
@@ -164,7 +164,7 @@ export function postPage(post, posts) {
         </header>
 
         <figure class="mt-10 overflow-hidden rounded-3xl border border-white/10">
-          <img src="${base}images/blog/${post.slug}.jpg" alt="${esc(post.title)}" width="1200" height="630" fetchpriority="high" class="w-full" />
+          <img sizes="(min-width: 1200px) 1152px, calc(100vw - 32px)" src="${base}images/blog/${post.slug}.jpg" alt="Cover image for the article: ${esc(post.title)}" width="1200" height="630" fetchpriority="high" class="w-full" />
         </figure>
 
         <div class="mt-14 grid gap-12 lg:grid-cols-[1fr_260px]">
@@ -185,7 +185,7 @@ export function postPage(post, posts) {
               <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-nebula-violet/25 blur-3xl"></div>
               <p class="relative font-display text-2xl font-bold text-white">Need help with ${esc(post.keyword)}?</p>
               <p class="relative mt-3 max-w-xl text-slate-400">Tell me about your project and I'll suggest the simplest way to build it well — no obligation.</p>
-              <a href="${WA}" target="_blank" rel="noopener" class="relative mt-6 mr-3 inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp</a>
+              <a href="${WA}" target="_blank" rel="noopener" class="relative mt-6 mr-3 inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-[#052e16] transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp</a>
               <a href="${base}contact.html" class="relative mt-6 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-nebula-violet to-nebula-cyan px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,.5)]">Get in touch <i class="fa-solid fa-arrow-right text-sm"></i></a>
             </aside>
 

@@ -1,7 +1,7 @@
 // The site's main pages — one per menu item. Section markup lives in src/sections/*.html.
 
 import { readFileSync } from 'node:fs';
-import { SITE, ctaBand, person, breadcrumbs, canonicalFor } from './layout.mjs';
+import { SITE, ctaBand, person, breadcrumbs, canonicalFor, eagerFirst } from './layout.mjs';
 import { posts } from './posts.mjs';
 import { postCard } from './blog.mjs';
 
@@ -24,6 +24,9 @@ function standalone(name) {
   let html = section(name).replace(/<!-- =+ \w+ =+ -->\s*/, '');
   html = html.replace(/(<section[^>]*?)\bpy-28\b/, '$1pb-24 pt-36');
   html = html.replace(/<h2 class="([^"]*)">([\s\S]*?)<\/h2>/, '<h1 class="$1">$2</h1>');
+  // Keep heading levels in order: with the section title promoted to h1, its h3s become h2s
+  // (unless the section already has its own h2s for them to sit under).
+  if (!/<h2[\s>]/.test(html)) html = html.replace(/<h3\b([^>]*)>([\s\S]*?)<\/h3>/g, '<h2$1>$2</h2>');
   return fixLinks(dropNumber(html));
 }
 
@@ -105,7 +108,7 @@ const howIWork = `
             ['fa-code', 'Build', 'Working software every week or two on a preview link — React, Next.js, TypeScript and Laravel under the hood.'],
             ['fa-rocket', 'Launch &amp; support', 'Deployment, SEO, analytics and monitoring, plus fixes and improvements once real users arrive.'],
           ].map(([icon, h, p], i) => `<li class="reveal glass rounded-3xl p-7">
-            <span class="font-mono text-sm text-slate-500">0${i + 1}</span>
+            <span class="font-mono text-sm text-slate-400">0${i + 1}</span>
             <i class="fa-solid ${icon} mt-4 block text-2xl text-nebula-cyan" aria-hidden="true"></i>
             <h3 class="mt-4 font-display text-lg font-bold text-white">${h}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-400">${p}</p>
@@ -192,7 +195,7 @@ export const pages = [
       'Selected projects: CW Skills, Bangladesh Medical University, Crystal Valet, iDesk360 and more — websites and web apps built with Next.js, Laravel and WordPress.',
     extra: { mainEntity: { '@id': `${SITE}/#projects` } },
     nodes: [node('ItemList')],
-    main: standalone('projects') + ctaBand(''),
+    main: eagerFirst(standalone('projects')) + ctaBand(''),
   }),
   page({
     file: 'education.html',

@@ -4,7 +4,8 @@
 import { writeFileSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { renderPage } from '../src/layout.mjs';
+import { renderPage, baseFor } from '../src/layout.mjs';
+import { responsiveImages } from './images.mjs';
 import { pages } from '../src/pages.mjs';
 import { posts } from '../src/posts.mjs';
 import { blogIndexPage, postPage } from '../src/blog.mjs';
@@ -23,7 +24,7 @@ export function generate() {
 
   const list = allPages();
   for (const p of list) {
-    const html = renderPage(p).replaceAll('{{YEAR}}', String(new Date().getFullYear()));
+    const html = responsiveImages(renderPage(p), baseFor(p.file)).replaceAll('{{YEAR}}', String(new Date().getFullYear()));
     writeFileSync(join(ROOT, p.file), html);
   }
   return list;

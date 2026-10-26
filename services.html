@@ -141,24 +141,21 @@
 }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-  </noscript>
+  <!-- build:preload-fonts (the build preloads the self-hosted fonts; skipped here because browsers block it for file:// pages) -->
 
   <!-- Tailwind CDN for local preview; `npm run build` swaps this block for a compiled stylesheet. -->
   <!-- build:tailwind -->
   <script src="https://cdn.tailwindcss.com/3.4.5"></script>
   <script src="assets/tailwind.config.js"></script>
   <!-- /build:tailwind -->
+  <!-- build:inline-css (fonts.css + site.css are inlined by the build) -->
+  <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="assets/site.css" />
+  <!-- /build:inline-css -->
+
+  <!-- Icon font: not needed for first paint, so it loads without blocking. -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" /></noscript>
 </head>
 
 <body class="relative font-sans text-slate-300 antialiased">
@@ -167,22 +164,22 @@
 
   <div id="planets" class="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
     <div class="bg-planet" data-speed="-0.12" style="top:110px; right:2%; width:90px; height:90px; --w:22s">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="90px" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.18" style="top:38%; left:-70px; width:130px; height:130px; --w:28s; --wd:-6s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="130px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.06" style="top:50%; right:-130px; width:340px; height:340px; --w:45s; opacity:0.7">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="340px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.15" style="top:63%; right:12%; width:90px; height:90px; --w:24s; --wd:-8s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="90px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.14" style="top:72%; left:-60px; width:170px; height:170px; --w:34s; --wd:-15s; opacity:0.85">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="170px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.2" style="top:88%; right:8%; width:70px; height:70px; --w:20s; --wd:-4s">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="70px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
     </div>
   </div>
 
@@ -237,32 +234,32 @@
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-violet/15 text-xl text-nebula-violet"><i class="fa-solid fa-code" aria-hidden="true"></i></span>
-            <h3 class="mt-5 font-display text-lg font-bold text-white">Custom Software Development</h3>
+            <h2 class="mt-5 font-display text-lg font-bold text-white">Custom Software Development</h2>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Portals, dashboards and internal tools built around your workflow — replacing spreadsheets and disconnected apps with one system you own.</p>
             <a href="blog/custom-software-development.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">Guide to custom software development <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
           </article>
           <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-400/15 text-xl text-emerald-400"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span>
-            <h3 class="mt-5 font-display text-lg font-bold text-white">App Development</h3>
+            <h2 class="mt-5 font-display text-lg font-bold text-white">App Development</h2>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Web apps and SaaS platforms from idea to launch — MVP scoping, a Next.js frontend, a Laravel or Node.js API, testing, deployment and AI-integrated features.</p>
             <a href="blog/web-app-development.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">App development, step by step <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
           </article>
           <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-pink/15 text-xl text-nebula-pink"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i></span>
-            <h3 class="mt-5 font-display text-lg font-bold text-white">UI/UX Design</h3>
+            <h2 class="mt-5 font-display text-lg font-bold text-white">UI/UX Design</h2>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">User flows, wireframes and polished interfaces in Figma — clear, accessible and easy to use, then turned into pixel-perfect code.</p>
             <a href="blog/ui-ux-design.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">Why good UI/UX design sells <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
           </article>
           <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-cyan/15 text-xl text-nebula-cyan"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span>
-            <h3 class="mt-5 font-display text-lg font-bold text-white">Web Design &amp; Development</h3>
+            <h2 class="mt-5 font-display text-lg font-bold text-white">Web Design &amp; Development</h2>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Fast, responsive, SEO-friendly websites — business sites, restaurant and booking websites, e-commerce — built with Next.js, Tailwind CSS, Laravel or WordPress.</p>
             <a href="blog/frontend-website-development.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">Guide to website development <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
-            <p class="mt-3 text-sm text-slate-500">Also: <a href="blog/restaurant-website-development.html" class="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">restaurant websites</a> · <a href="blog/booking-website-development.html" class="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">booking websites</a></p>
+            <p class="mt-3 text-sm text-slate-400">Also: <a href="blog/restaurant-website-development.html" class="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">restaurant websites</a> · <a href="blog/booking-website-development.html" class="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">booking websites</a></p>
           </article>
           <article class="reveal glass glow-border flex flex-col rounded-3xl p-7 lg:col-span-2">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-amber/15 text-xl text-nebula-amber"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
-            <h3 class="mt-5 font-display text-lg font-bold text-white">SEO &amp; Digital Marketing</h3>
+            <h2 class="mt-5 font-display text-lg font-bold text-white">SEO &amp; Digital Marketing</h2>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Technical SEO, fast Core Web Vitals, structured data and on-page optimisation, plus content, local SEO and analytics that help the right customers find you — and turn visits into enquiries.</p>
             <a href="blog/seo-for-small-business.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">SEO guide for small businesses <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
           </article>
@@ -280,25 +277,25 @@
         </div>
         <ol class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <li class="reveal glass rounded-3xl p-7">
-            <span class="font-mono text-sm text-slate-500">01</span>
+            <span class="font-mono text-sm text-slate-400">01</span>
             <i class="fa-solid fa-magnifying-glass mt-4 block text-2xl text-nebula-cyan" aria-hidden="true"></i>
             <h3 class="mt-4 font-display text-lg font-bold text-white">Discover</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-400">We talk through your goals, your users and how things work today, then agree on what success looks like.</p>
           </li>
           <li class="reveal glass rounded-3xl p-7">
-            <span class="font-mono text-sm text-slate-500">02</span>
+            <span class="font-mono text-sm text-slate-400">02</span>
             <i class="fa-solid fa-pen-ruler mt-4 block text-2xl text-nebula-cyan" aria-hidden="true"></i>
             <h3 class="mt-4 font-display text-lg font-bold text-white">Design</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-400">Wireframes and designs in Figma, so you can click through the product before any code is written.</p>
           </li>
           <li class="reveal glass rounded-3xl p-7">
-            <span class="font-mono text-sm text-slate-500">03</span>
+            <span class="font-mono text-sm text-slate-400">03</span>
             <i class="fa-solid fa-code mt-4 block text-2xl text-nebula-cyan" aria-hidden="true"></i>
             <h3 class="mt-4 font-display text-lg font-bold text-white">Build</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-400">Working software every week or two on a preview link — React, Next.js, TypeScript and Laravel under the hood.</p>
           </li>
           <li class="reveal glass rounded-3xl p-7">
-            <span class="font-mono text-sm text-slate-500">04</span>
+            <span class="font-mono text-sm text-slate-400">04</span>
             <i class="fa-solid fa-rocket mt-4 block text-2xl text-nebula-cyan" aria-hidden="true"></i>
             <h3 class="mt-4 font-display text-lg font-bold text-white">Launch &amp; support</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-400">Deployment, SEO, analytics and monitoring, plus fixes and improvements once real users arrive.</p>
@@ -317,7 +314,7 @@
           </div>
           <div class="flex flex-wrap gap-3">
             <a href="contact.html" class="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-nebula-violet to-nebula-cyan px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,.5)]">Get in touch <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
-            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
+            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-[#052e16] transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -370,7 +367,7 @@
         </ul>
       </div>
     </div>
-    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-500">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
+    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-400">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
   </footer>
 
   <!-- WhatsApp chat button -->
@@ -380,7 +377,7 @@
     <span class="hidden pr-1 text-sm font-semibold sm:group-hover:inline">Chat on WhatsApp</span>
   </a>
 
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/vendor/lenis-1.1.13.min.js" defer></script>
+  <script src="assets/main.js" defer></script>
 </body>
 </html>

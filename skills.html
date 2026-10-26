@@ -80,24 +80,21 @@
 }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-  </noscript>
+  <!-- build:preload-fonts (the build preloads the self-hosted fonts; skipped here because browsers block it for file:// pages) -->
 
   <!-- Tailwind CDN for local preview; `npm run build` swaps this block for a compiled stylesheet. -->
   <!-- build:tailwind -->
   <script src="https://cdn.tailwindcss.com/3.4.5"></script>
   <script src="assets/tailwind.config.js"></script>
   <!-- /build:tailwind -->
+  <!-- build:inline-css (fonts.css + site.css are inlined by the build) -->
+  <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="assets/site.css" />
+  <!-- /build:inline-css -->
+
+  <!-- Icon font: not needed for first paint, so it loads without blocking. -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/vendor/fontawesome-6.5.1/css/all.min.css" /></noscript>
 </head>
 
 <body class="relative font-sans text-slate-300 antialiased">
@@ -106,22 +103,22 @@
 
   <div id="planets" class="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
     <div class="bg-planet" data-speed="-0.12" style="top:110px; right:2%; width:90px; height:90px; --w:22s">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="90px" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.18" style="top:38%; left:-70px; width:130px; height:130px; --w:28s; --wd:-6s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="130px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.06" style="top:50%; right:-130px; width:340px; height:340px; --w:45s; opacity:0.7">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="340px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.15" style="top:63%; right:12%; width:90px; height:90px; --w:24s; --wd:-8s">
-      <img src="planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
+      <img src="images/opt/planet-1-a9efd819-500.webp" srcset="images/opt/planet-1-a9efd819-160.webp 160w, images/opt/planet-1-a9efd819-320.webp 320w, images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="90px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.14" style="top:72%; left:-60px; width:170px; height:170px; --w:34s; --wd:-15s; opacity:0.85">
-      <img src="planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
+      <img src="images/opt/planet-2-6ad90751-500.webp" srcset="images/opt/planet-2-6ad90751-160.webp 160w, images/opt/planet-2-6ad90751-320.webp 320w, images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="170px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.2" style="top:88%; right:8%; width:70px; height:70px; --w:20s; --wd:-4s">
-      <img src="planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
+      <img src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="70px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
     </div>
   </div>
 
@@ -167,9 +164,9 @@
   <main id="main" class="relative z-10">
     <section id="skills" class="relative px-4 pb-24 pt-36">
       <!-- ringed planet beside the heading -->
-      <div class="pointer-events-none absolute right-[5%] top-28 hidden h-60 w-60 md:block xl:right-[9%]" aria-hidden="true">
+      <div class="pointer-events-none absolute right-[5%] top-28 hidden h-60 w-60 md:block xl:right-[9%]">
         <div class="h-full w-full" style="animation: wander 32s ease-in-out infinite">
-          <img src="planet-3.png" alt="" width="500" height="500" decoding="async" loading="lazy" class="h-full w-full select-none drop-shadow-[0_0_40px_rgba(251,191,36,.18)]" style="animation: tilt 14s ease-in-out infinite" draggable="false" />
+          <img sizes="240px" src="images/opt/planet-3-b1d0c119-500.webp" srcset="images/opt/planet-3-b1d0c119-160.webp 160w, images/opt/planet-3-b1d0c119-320.webp 320w, images/opt/planet-3-b1d0c119-500.webp 500w" alt="Ringed gas giant planet, similar to Saturn" width="500" height="500" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_40px_rgba(251,191,36,.18)]" style="animation: tilt 14s ease-in-out infinite" draggable="false" />
         </div>
       </div>
 
@@ -179,37 +176,37 @@
           <h1 class="mt-3 font-display text-3xl font-bold text-white sm:text-5xl">What I <span class="text-gradient">work with</span></h1>
         </div>
 
-        <h3 class="reveal mb-5 text-sm font-semibold uppercase tracking-widest text-white">Core stack</h3>
+        <h2 class="reveal mb-5 text-sm font-semibold uppercase tracking-widest text-white">Core stack</h2>
         <div class="mb-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><i class="devicon-react-original colored text-5xl transition duration-1000 group-hover:rotate-180"></i><p class="mt-3 font-semibold text-white">React / Next.js</p></div>
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><i class="devicon-typescript-plain colored text-5xl"></i><p class="mt-3 font-semibold text-white">TypeScript</p></div>
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><i class="devicon-tailwindcss-original colored text-5xl"></i><p class="mt-3 font-semibold text-white">Tailwind CSS</p></div>
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><i class="devicon-javascript-plain colored text-5xl"></i><p class="mt-3 font-semibold text-white">JavaScript (ES6+)</p></div>
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><div class="flex justify-center gap-2 text-5xl"><i class="devicon-html5-plain colored"></i><i class="devicon-css3-plain colored"></i></div><p class="mt-3 font-semibold text-white">HTML5 / CSS3</p></div>
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><i class="devicon-bootstrap-plain colored text-5xl"></i><p class="mt-3 font-semibold text-white">Bootstrap</p></div>
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><i class="devicon-laravel-original colored text-5xl"></i><p class="mt-3 font-semibold text-white">Laravel / Livewire</p></div>
-          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><i class="devicon-wordpress-plain text-5xl text-white"></i><p class="mt-3 font-semibold text-white">WordPress</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><img src="assets/icons/react.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-5xl transition duration-1000 group-hover:rotate-180" /><p class="mt-3 font-semibold text-white">React / Next.js</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><img src="assets/icons/typescript.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-5xl" /><p class="mt-3 font-semibold text-white">TypeScript</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><img src="assets/icons/tailwindcss.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-5xl" /><p class="mt-3 font-semibold text-white">Tailwind CSS</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><img src="assets/icons/javascript.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-5xl" /><p class="mt-3 font-semibold text-white">JavaScript (ES6+)</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><div class="flex justify-center gap-2 text-5xl"><img src="assets/icons/html5.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em]" /><img src="assets/icons/css3.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em]" /></div><p class="mt-3 font-semibold text-white">HTML5 / CSS3</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><img src="assets/icons/bootstrap.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-5xl" /><p class="mt-3 font-semibold text-white">Bootstrap</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><img src="assets/icons/laravel.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-5xl" /><p class="mt-3 font-semibold text-white">Laravel / Livewire</p></div>
+          <div class="reveal glass glow-border group rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5"><img src="assets/icons/wordpress.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] brightness-0 invert text-5xl" /><p class="mt-3 font-semibold text-white">WordPress</p></div>
         </div>
 
-        <h3 class="reveal mb-5 text-sm font-semibold uppercase tracking-widest text-white">Tools</h3>
+        <h2 class="reveal mb-5 text-sm font-semibold uppercase tracking-widest text-white">Tools</h2>
         <div class="reveal mb-14 flex flex-wrap gap-3">
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-git-plain colored text-xl"></i>Git</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-github-original text-xl"></i>GitHub</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-vscode-plain colored text-xl"></i>VS Code</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-figma-plain colored text-xl"></i>Figma</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-vitejs-plain colored text-xl"></i>Vite</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-nodejs-plain colored text-xl"></i>Node.js</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/git.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Git</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/github.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] brightness-0 invert text-xl" />GitHub</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/vscode.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />VS Code</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/figma.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Figma</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/vitejs.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Vite</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/nodejs.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Node.js</span>
           <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="fa-solid fa-plug text-lg text-emerald-400"></i>REST API</span>
           <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="fa-solid fa-robot text-lg text-nebula-pink"></i>Ollama</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-docker-plain colored text-xl"></i>Docker</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-postman-plain colored text-xl"></i>Postman</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-alpinejs-original colored text-xl"></i>Alpine.js</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/docker.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Docker</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/postman.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Postman</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/alpinejs.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Alpine.js</span>
           <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="fa-solid fa-layer-group text-lg text-white"></i>shadcn/ui</span>
           <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="fa-solid fa-wind text-lg text-nebula-cyan"></i>Flux UI</span>
-          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><i class="devicon-redux-original colored text-xl"></i>Redux</span>
+          <span class="glass flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm text-white transition duration-300 hover:bg-white/10"><img src="assets/icons/redux.svg" alt="" width="128" height="128" class="inline-block h-[1em] w-[1em] text-xl" />Redux</span>
         </div>
 
-        <h3 class="reveal mb-5 text-sm font-semibold uppercase tracking-widest text-white">What I'm good at</h3>
+        <h2 class="reveal mb-5 text-sm font-semibold uppercase tracking-widest text-white">What I'm good at</h2>
         <div class="reveal flex flex-wrap gap-x-8 gap-y-3 text-slate-400">
           <span><i class="fa-solid fa-check mr-2 text-nebula-cyan"></i>Responsive &amp; mobile-first UI</span>
           <span><i class="fa-solid fa-check mr-2 text-nebula-cyan"></i>Component architecture</span>
@@ -236,7 +233,7 @@
           </div>
           <div class="flex flex-wrap gap-3">
             <a href="contact.html" class="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-nebula-violet to-nebula-cyan px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,.5)]">Get in touch <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
-            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
+            <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-[#052e16] transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -289,7 +286,7 @@
         </ul>
       </div>
     </div>
-    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-500">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
+    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-400">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
   </footer>
 
   <!-- WhatsApp chat button -->
@@ -299,7 +296,7 @@
     <span class="hidden pr-1 text-sm font-semibold sm:group-hover:inline">Chat on WhatsApp</span>
   </a>
 
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/vendor/lenis-1.1.13.min.js" defer></script>
+  <script src="assets/main.js" defer></script>
 </body>
 </html>

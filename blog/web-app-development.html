@@ -144,24 +144,21 @@
 }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
-  </noscript>
+  <!-- build:preload-fonts (the build preloads the self-hosted fonts; skipped here because browsers block it for file:// pages) -->
 
   <!-- Tailwind CDN for local preview; `npm run build` swaps this block for a compiled stylesheet. -->
   <!-- build:tailwind -->
   <script src="https://cdn.tailwindcss.com/3.4.5"></script>
   <script src="../assets/tailwind.config.js"></script>
   <!-- /build:tailwind -->
+  <!-- build:inline-css (fonts.css + site.css are inlined by the build) -->
+  <link rel="stylesheet" href="../assets/fonts.css" />
   <link rel="stylesheet" href="../assets/site.css" />
+  <!-- /build:inline-css -->
+
+  <!-- Icon font: not needed for first paint, so it loads without blocking. -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome-6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="../assets/vendor/fontawesome-6.5.1/css/all.min.css" /></noscript>
 </head>
 
 <body class="relative font-sans text-slate-300 antialiased">
@@ -170,22 +167,22 @@
 
   <div id="planets" class="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
     <div class="bg-planet" data-speed="-0.12" style="top:110px; right:2%; width:90px; height:90px; --w:22s">
-      <img src="../planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
+      <img src="../images/opt/planet-2-6ad90751-500.webp" srcset="../images/opt/planet-2-6ad90751-160.webp 160w, ../images/opt/planet-2-6ad90751-320.webp 320w, ../images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="90px" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 200s linear infinite reverse" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.18" style="top:38%; left:-70px; width:130px; height:130px; --w:28s; --wd:-6s">
-      <img src="../planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
+      <img src="../images/opt/planet-1-a9efd819-500.webp" srcset="../images/opt/planet-1-a9efd819-160.webp 160w, ../images/opt/planet-1-a9efd819-320.webp 320w, ../images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="130px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 150s linear infinite; filter: hue-rotate(140deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.06" style="top:50%; right:-130px; width:340px; height:340px; --w:45s; opacity:0.7">
-      <img src="../planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
+      <img src="../images/opt/planet-3-b1d0c119-500.webp" srcset="../images/opt/planet-3-b1d0c119-160.webp 160w, ../images/opt/planet-3-b1d0c119-320.webp 320w, ../images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="340px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 18s ease-in-out infinite" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.15" style="top:63%; right:12%; width:90px; height:90px; --w:24s; --wd:-8s">
-      <img src="../planet-1.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
+      <img src="../images/opt/planet-1-a9efd819-500.webp" srcset="../images/opt/planet-1-a9efd819-160.webp 160w, ../images/opt/planet-1-a9efd819-320.webp 320w, ../images/opt/planet-1-a9efd819-500.webp 500w" alt="" width="500" height="500" sizes="90px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 120s linear infinite reverse; filter: hue-rotate(190deg)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.14" style="top:72%; left:-60px; width:170px; height:170px; --w:34s; --wd:-15s; opacity:0.85">
-      <img src="../planet-2.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
+      <img src="../images/opt/planet-2-6ad90751-500.webp" srcset="../images/opt/planet-2-6ad90751-160.webp 160w, ../images/opt/planet-2-6ad90751-320.webp 320w, ../images/opt/planet-2-6ad90751-500.webp 500w" alt="" width="500" height="500" sizes="170px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: spin 220s linear infinite; filter: hue-rotate(160deg) saturate(2.2)" draggable="false" />
     </div>
     <div class="bg-planet" data-speed="-0.2" style="top:88%; right:8%; width:70px; height:70px; --w:20s; --wd:-4s">
-      <img src="../planet-3.png" alt="" width="500" height="500" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
+      <img src="../images/opt/planet-3-b1d0c119-500.webp" srcset="../images/opt/planet-3-b1d0c119-160.webp 160w, ../images/opt/planet-3-b1d0c119-320.webp 320w, ../images/opt/planet-3-b1d0c119-500.webp 500w" alt="" width="500" height="500" sizes="70px" loading="lazy" decoding="async" class="h-full w-full select-none drop-shadow-[0_0_30px_rgba(167,139,250,.2)]" style="animation: tilt 12s ease-in-out infinite; filter: hue-rotate(280deg)" draggable="false" />
     </div>
   </div>
 
@@ -232,7 +229,7 @@
 
     <article class="px-4 pb-24 pt-36">
       <div class="mx-auto max-w-6xl">
-        <nav aria-label="Breadcrumb" class="mb-6 text-sm text-slate-500">
+        <nav aria-label="Breadcrumb" class="mb-6 text-sm text-slate-400">
           <ol class="flex flex-wrap items-center gap-2">
             <li><a href="../index.html" class="hover:text-white">Home</a></li><li aria-hidden="true">/</li>
             <li><a href="../blog.html" class="hover:text-white">Blog</a></li><li aria-hidden="true">/</li>
@@ -255,7 +252,7 @@
         </header>
 
         <figure class="mt-10 overflow-hidden rounded-3xl border border-white/10">
-          <img src="../images/blog/web-app-development.jpg" alt="Web App Development: From Idea to Launch, Step by Step" width="1200" height="630" fetchpriority="high" class="w-full" />
+          <img sizes="(min-width: 1200px) 1152px, calc(100vw - 32px)" src="../images/opt/web-app-development-81d18f5e-400.webp" srcset="../images/opt/web-app-development-81d18f5e-400.webp 400w, ../images/opt/web-app-development-81d18f5e-800.webp 800w, ../images/opt/web-app-development-81d18f5e-1200.webp 1200w" alt="Cover image for the article: Web App Development: From Idea to Launch, Step by Step" width="1200" height="630" fetchpriority="high" class="w-full" />
         </figure>
 
         <div class="mt-14 grid gap-12 lg:grid-cols-[1fr_260px]">
@@ -324,7 +321,7 @@
               <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-nebula-violet/25 blur-3xl"></div>
               <p class="relative font-display text-2xl font-bold text-white">Need help with web app development?</p>
               <p class="relative mt-3 max-w-xl text-slate-400">Tell me about your project and I'll suggest the simplest way to build it well — no obligation.</p>
-              <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="relative mt-6 mr-3 inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp</a>
+              <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" class="relative mt-6 mr-3 inline-flex items-center gap-3 rounded-full bg-[#25D366] px-7 py-3.5 font-semibold text-[#052e16] transition duration-300 hover:shadow-[0_0_40px_rgba(37,211,102,.45)]"><i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp</a>
               <a href="../contact.html" class="relative mt-6 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-nebula-violet to-nebula-cyan px-7 py-3.5 font-semibold text-white transition duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,.5)]">Get in touch <i class="fa-solid fa-arrow-right text-sm"></i></a>
             </aside>
 
@@ -366,13 +363,13 @@
           <article class="reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl transition duration-500 hover:-translate-y-1">
             <a href="../blog/custom-software-development.html" class="absolute inset-0 z-10" aria-label="Custom Software Development: A Practical Guide for Growing Businesses"></a>
             <div class="aspect-[1200/630] overflow-hidden">
-              <img src="../images/blog/custom-software-development.jpg" alt="Custom Software Development: A Practical Guide for Growing Businesses" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="../images/opt/custom-software-development-32c75213-400.webp" srcset="../images/opt/custom-software-development-32c75213-400.webp 400w, ../images/opt/custom-software-development-32c75213-800.webp 800w, ../images/opt/custom-software-development-32c75213-1200.webp 1200w" alt="" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             </div>
             <div class="flex flex-1 flex-col p-6">
               <p class="text-xs font-semibold uppercase tracking-widest text-nebula-cyan">Custom Software</p>
               <h3 class="mt-2 font-display text-lg font-bold leading-snug text-white">Custom Software Development: A Practical Guide for Growing Businesses</h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">When spreadsheets and off-the-shelf tools stop fitting the way you work, custom software can. Here is how the process works and how to get it right.</p>
-              <p class="mt-5 flex items-center gap-3 text-xs text-slate-500">
+              <p class="mt-5 flex items-center gap-3 text-xs text-slate-400">
                 <time datetime="2026-10-26">26 October 2026</time><span aria-hidden="true">·</span><span>4 min read</span>
               </p>
             </div>
@@ -380,13 +377,13 @@
           <article class="reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl transition duration-500 hover:-translate-y-1">
             <a href="../blog/frontend-website-development.html" class="absolute inset-0 z-10" aria-label="Frontend Website Development: What Makes a Website Fast, Usable and Easy to Grow"></a>
             <div class="aspect-[1200/630] overflow-hidden">
-              <img src="../images/blog/frontend-website-development.jpg" alt="Frontend Website Development: What Makes a Website Fast, Usable and Easy to Grow" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="../images/opt/frontend-website-development-3633f349-400.webp" srcset="../images/opt/frontend-website-development-3633f349-400.webp 400w, ../images/opt/frontend-website-development-3633f349-800.webp 800w, ../images/opt/frontend-website-development-3633f349-1200.webp 1200w" alt="" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             </div>
             <div class="flex flex-1 flex-col p-6">
               <p class="text-xs font-semibold uppercase tracking-widest text-nebula-cyan">Frontend</p>
               <h3 class="mt-2 font-display text-lg font-bold leading-snug text-white">Frontend Website Development: What Makes a Website Fast, Usable and Easy to Grow</h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">Speed, mobile layouts, accessibility and SEO all live in the frontend. Here is what goes into a website that feels fast and keeps working as it grows.</p>
-              <p class="mt-5 flex items-center gap-3 text-xs text-slate-500">
+              <p class="mt-5 flex items-center gap-3 text-xs text-slate-400">
                 <time datetime="2026-10-26">26 October 2026</time><span aria-hidden="true">·</span><span>3 min read</span>
               </p>
             </div>
@@ -394,13 +391,13 @@
           <article class="reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl transition duration-500 hover:-translate-y-1">
             <a href="../blog/restaurant-website-development.html" class="absolute inset-0 z-10" aria-label="Restaurant Website Design: 10 Features That Turn Visitors Into Diners"></a>
             <div class="aspect-[1200/630] overflow-hidden">
-              <img src="../images/blog/restaurant-website-development.jpg" alt="Restaurant Website Design: 10 Features That Turn Visitors Into Diners" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="../images/opt/restaurant-website-development-dc5dfb03-400.webp" srcset="../images/opt/restaurant-website-development-dc5dfb03-400.webp 400w, ../images/opt/restaurant-website-development-dc5dfb03-800.webp 800w, ../images/opt/restaurant-website-development-dc5dfb03-1200.webp 1200w" alt="" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             </div>
             <div class="flex flex-1 flex-col p-6">
               <p class="text-xs font-semibold uppercase tracking-widest text-nebula-cyan">Restaurant Websites</p>
               <h3 class="mt-2 font-display text-lg font-bold leading-snug text-white">Restaurant Website Design: 10 Features That Turn Visitors Into Diners</h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">Most people check a restaurant online before they visit or order. These ten features make sure your website wins that moment.</p>
-              <p class="mt-5 flex items-center gap-3 text-xs text-slate-500">
+              <p class="mt-5 flex items-center gap-3 text-xs text-slate-400">
                 <time datetime="2026-10-26">26 October 2026</time><span aria-hidden="true">·</span><span>3 min read</span>
               </p>
             </div>
@@ -456,7 +453,7 @@
         </ul>
       </div>
     </div>
-    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-500">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
+    <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-400">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
   </footer>
 
   <!-- WhatsApp chat button -->
@@ -466,7 +463,7 @@
     <span class="hidden pr-1 text-sm font-semibold sm:group-hover:inline">Chat on WhatsApp</span>
   </a>
 
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="../assets/main.js"></script>
+  <script src="../assets/vendor/lenis-1.1.13.min.js" defer></script>
+  <script src="../assets/main.js" defer></script>
 </body>
 </html>
