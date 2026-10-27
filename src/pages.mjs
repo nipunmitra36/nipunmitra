@@ -134,7 +134,7 @@ function gigCard(g) {
                 <span class="font-semibold text-white">Nipun Mitra</span>
                 <span class="text-slate-400">· Software Developer</span>
               </div>
-              <h3 class="mt-4 font-display text-lg font-bold leading-snug text-white">${g.title}</h3>
+              <h3 class="mt-4 font-heading text-lg font-bold leading-snug text-white">${g.title}</h3>
               <div class="mt-3 flex flex-wrap gap-1.5">${g.tags.map((t) => `<span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">${t}</span>`).join('')}</div>
               <ul class="mt-5 flex-1 space-y-2 text-sm text-slate-400">
                 ${g.includes.map((i) => `<li class="flex gap-2.5"><i class="fa-solid fa-check mt-1 text-emerald-400" aria-hidden="true"></i><span>${i}</span></li>`).join('\n                ')}
@@ -238,7 +238,7 @@ const howIWork = `
           ].map(([icon, h, p], i) => `<li class="reveal glass rounded-3xl p-7">
             <span class="font-mono text-sm text-slate-400">0${i + 1}</span>
             <i class="fa-solid ${icon} mt-4 block text-2xl text-nebula-cyan" aria-hidden="true"></i>
-            <h3 class="mt-4 font-display text-lg font-bold text-white">${h}</h3>
+            <h3 class="mt-4 font-heading text-lg font-bold text-white">${h}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-400">${p}</p>
           </li>`).join('\n          ')}
         </ol>

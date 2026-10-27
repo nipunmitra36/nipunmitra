@@ -22,7 +22,7 @@ export function postCard(p, base, headingTag = 'h2') {
             </div>
             <div class="flex flex-1 flex-col p-6">
               <p class="text-xs font-semibold uppercase tracking-widest text-nebula-cyan">${esc(p.category)}</p>
-              <${headingTag} class="mt-2 font-display text-lg font-bold leading-snug text-white">${esc(p.title)}</${headingTag}>
+              <${headingTag} class="mt-2 font-heading text-lg font-bold leading-snug text-white">${esc(p.title)}</${headingTag}>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">${esc(p.excerpt)}</p>
               <p class="mt-5 flex items-center gap-3 text-xs text-slate-400">
                 <time datetime="${p.date}">${formatDate(p.date)}</time><span aria-hidden="true">·</span><span>${readingTime(p.html)} min read</span>

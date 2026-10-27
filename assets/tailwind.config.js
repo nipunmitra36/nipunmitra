@@ -4,6 +4,8 @@ tailwind.config = {
     extend: {
       fontFamily: {
         display: ['Orbitron', 'sans-serif'],
+        // content headings (card titles, article subheadings); section titles keep Orbitron
+        heading: ['"Google Sans"', '"Space Grotesk"', 'sans-serif'],
         sans: ['"Space Grotesk"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
