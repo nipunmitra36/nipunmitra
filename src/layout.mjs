@@ -57,6 +57,9 @@ function header(base, active) {
 ${MENU.map((m) => `        <li><a href="${base}${m.file}" class="${m.key === active ? activeCls : linkCls}"${current(m)}>${m.label}</a></li>`).join('\n')}
       </ul>
       <div class="flex items-center gap-2">
+        <a href="${WA}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="inline-flex h-10 items-center gap-2 rounded-full bg-[#25D366] px-3 text-sm font-semibold text-[#052e16] transition hover:brightness-110 xl:px-4">
+          <i class="fa-brands fa-whatsapp text-lg leading-none" aria-hidden="true"></i><span class="hidden xl:inline">WhatsApp</span>
+        </a>
         <a href="${base}contact.html" class="hidden rounded-full bg-white px-5 py-2 text-sm font-semibold text-void transition hover:bg-nebula-cyan sm:inline-flex sm:items-center sm:gap-2"${active === 'contact' ? ' aria-current="page"' : ''}>
           Let's talk <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
