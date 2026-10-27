@@ -472,6 +472,14 @@
     </div>
   </header>
 
+  <!-- Astronaut that travels with the scroll, section by section (assets/main.js). Sits behind the content. -->
+  <div id="astro-guide" aria-hidden="true">
+    <div class="astro-body">
+      <span class="astro-glow"></span>
+      <img src="images/opt/3d-astronaut-b3720fb3-500.webp" srcset="images/opt/3d-astronaut-b3720fb3-160.webp 160w, images/opt/3d-astronaut-b3720fb3-320.webp 320w, images/opt/3d-astronaut-b3720fb3-500.webp 500w" sizes="150px" alt="" width="500" height="500" decoding="async" draggable="false" />
+    </div>
+  </div>
+
   <main id="main" class="relative z-10">
     <!-- ================= HERO ================= -->
     <section id="home" class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-20 pt-32">
@@ -514,7 +522,7 @@
       </div>
 
       <!-- floating astronaut, bottom left -->
-      <div class="pointer-events-none absolute bottom-12 left-[2%] hidden w-52 md:block xl:left-[5%] xl:w-72">
+      <div data-astro-hero class="pointer-events-none absolute bottom-12 left-[2%] hidden w-52 md:block xl:left-[5%] xl:w-72">
         <div class="astro-drift">
           <img sizes="(min-width: 1280px) 288px, 208px" src="images/opt/3d-astronaut-b3720fb3-500.webp" srcset="images/opt/3d-astronaut-b3720fb3-160.webp 160w, images/opt/3d-astronaut-b3720fb3-320.webp 320w, images/opt/3d-astronaut-b3720fb3-500.webp 500w" alt="Astronaut in a white spacesuit floating in space" width="500" height="500" decoding="async" class="w-full select-none drop-shadow-[0_10px_40px_rgba(167,139,250,.35)]" draggable="false" />
         </div>

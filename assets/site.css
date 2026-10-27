@@ -194,3 +194,24 @@ html.lenis, html.lenis body { height: auto; }
   .slider-track { animation: none !important; }
   .slider-track > [aria-hidden="true"] { display: none; }
 }
+
+/* ---------- Astronaut guide (moves with the scroll, see main.js) ---------- */
+#astro-guide {
+  position: fixed; top: 0; left: 0; z-index: 5; pointer-events: none;
+  width: clamp(72px, 9vw, 150px); opacity: 0; transition: opacity .8s ease;
+  will-change: transform;
+}
+#astro-guide.on { opacity: 1; }
+#astro-guide.front { z-index: 40; }
+#astro-guide.front.flying { z-index: 5; }
+#astro-guide .astro-body { position: relative; will-change: transform; transform-origin: 0 40%; }
+#astro-guide img { position: relative; width: 100%; height: auto; user-select: none; filter: drop-shadow(0 12px 30px rgba(167,139,250,.4)); }
+/* jet-pack glow: brightens while the astronaut is travelling */
+#astro-guide .astro-glow {
+  position: absolute; left: 18%; bottom: 8%; width: 45%; height: 45%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(253,186,116,.95), rgba(244,114,182,.55) 40%, rgba(34,211,238,0) 70%);
+  filter: blur(10px); opacity: 0; transition: opacity .2s linear;
+}
+/* the hero's own astronaut hands over to the guide */
+[data-astro-hero].astro-handoff { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { #astro-guide { display: none; } }

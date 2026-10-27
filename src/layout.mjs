@@ -230,6 +230,14 @@ ${JSON.stringify({ '@context': 'https://schema.org', ...jsonLd }, null, 2)}
 ${planets(base, active === 'home')}
 ${header(base, active)}
 
+  <!-- Astronaut that travels with the scroll, section by section (assets/main.js). Sits behind the content. -->
+  <div id="astro-guide" aria-hidden="true">
+    <div class="astro-body">
+      <span class="astro-glow"></span>
+      <img src="${base}3d-astronaut.png" sizes="150px" alt="" width="500" height="500" decoding="async" draggable="false" />
+    </div>
+  </div>
+
   <main id="main" class="relative z-10">
 ${main}
   </main>

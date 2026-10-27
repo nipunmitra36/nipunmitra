@@ -157,6 +157,80 @@ const io = new IntersectionObserver(entries => entries.forEach(en => {
 }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+/* ---------- Astronaut guide ----------
+   One astronaut floats beside the content and travels with the scroll: it holds a side of the screen
+   while you read a section, then flies across to the other side on its way to the next section —
+   tilting into the turn, jet-pack glowing while it moves, and gently bobbing when it's idle. */
+(() => {
+  const guide = document.getElementById('astro-guide');
+  const sections = [...document.querySelectorAll('main > section, main > article')].filter((s) => s.offsetHeight > 200);
+  if (!guide || reduceMotion || !sections.length) { guide?.remove(); return; }
+  const body = guide.querySelector('.astro-body'), glow = guide.querySelector('.astro-glow');
+
+  let rects = [], vw = 0, vh = 0, size = 0;
+  const measure = () => {
+    vw = innerWidth; vh = innerHeight; size = guide.offsetWidth;
+    rects = sections.map((s) => { const r = s.getBoundingClientRect(); return { top: r.top + scrollY, height: r.height }; });
+    // Wide screens: the side margin fits the astronaut, so it can float in front (never over text).
+    // Narrower screens: it drifts behind the content instead.
+    guide.classList.toggle('front', (vw - 1152) / 2 >= size + 8);
+  };
+  measure();
+  addEventListener('resize', measure);
+  new ResizeObserver(measure).observe(document.body);
+
+  // Stand in the side margin next to the content column (max-w-6xl = 1152px).
+  const sideX = (i) => {
+    const gutter = Math.max(0, (vw - 1152) / 2);
+    const inset = gutter > size + 24 ? gutter / 2 - size / 2 : 8;
+    return i % 2 === 0 ? inset : vw - size - inset;
+  };
+  const smooth = (a, b, v) => { const t = Math.min(1, Math.max(0, (v - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  const target = () => {
+    const mid = scrollY + vh * 0.5;
+    let i = rects.findIndex((r) => r.top + r.height > mid);
+    if (i < 0) i = rects.length - 1;
+    const r = rects[i];
+    const p = clamp((mid - r.top) / r.height, 0, 1);
+    const fly = i < rects.length - 1 ? smooth(0.7, 1, p) : 0; // cross over in the last 30% of a section
+    const x = sideX(i) + (sideX(i + 1) - sideX(i)) * fly;
+    const y = vh * (0.32 + 0.22 * Math.sin(p * Math.PI)) - Math.sin(fly * Math.PI) * vh * 0.12; // arc up while crossing
+    // Home hero: start big like the hero's own astronaut, shrinking to guide size through the hero.
+    const scale = isHome && i === 0 ? 2 - smooth(0.5, 0.95, p) : 1; // p ≈ 0.5 at the top of the page
+    return [x, y, scale];
+  };
+
+  // On the home page the hero's astronaut becomes the guide.
+  const isHome = !!document.querySelector('[data-astro-hero]');
+  document.querySelector('[data-astro-hero]')?.classList.add('astro-handoff');
+
+  let [x, y, scale] = target(), face = 1, lastScroll = scrollY, vel = 0;
+  const t0 = performance.now();
+  guide.classList.add('on');
+
+  (function frame(now) {
+    const [tx, ty, ts] = target();
+    scale += (ts - scale) * 0.08;
+    x += (tx - x) * 0.06; // ease towards the target: floaty, never snappy
+    y += (ty - y) * 0.06;
+    vel += (scrollY - lastScroll - vel) * 0.15;
+    lastScroll = scrollY;
+
+    const t = (now - t0) / 1000, dx = tx - x;
+    const bob = Math.sin(t * 1.1) * 10, sway = Math.sin(t * 0.7) * 6;
+    face += ((x + size / 2 < vw / 2 ? 1 : -1) - face) * 0.08; // always faces the content, turning smoothly
+    const tilt = sway + clamp(dx * 0.08, -28, 28) + clamp(vel * 0.5, -14, 14);
+
+    guide.style.transform = `translate3d(${x.toFixed(1)}px, ${(y + bob).toFixed(1)}px, 0)`;
+    body.style.transform = `scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(2)}deg) scaleX(${face.toFixed(3)})`;
+    glow.style.opacity = clamp(Math.abs(dx) / 140 + Math.abs(vel) / 45, 0, 1).toFixed(2);
+    guide.classList.toggle('flying', Math.abs(dx) > 40); // crossing the page: pass behind the content
+    requestAnimationFrame(frame);
+  })(t0);
+})();
+
 /* ---------- Mobile menu ---------- */
 const menu = document.getElementById('mobile-menu');
 const menuBtn = document.getElementById('menu-btn');
