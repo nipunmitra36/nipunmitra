@@ -130,7 +130,7 @@ console.log(`Search index: ${searchIndex.document_count} documents (${Object.ent
 
 // ---------- Static files ----------
 for (const f of [
-  'images', 'assets/fonts', 'assets/fonts.css', 'assets/icons', 'assets/vendor', 'favicon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'site.webmanifest', 'og-image.jpg',
+  'images', 'assets/fonts', 'assets/fonts.css', 'assets/icons', 'assets/vendor', 'assets/avatar-96.webp', 'assets/avatar-192.webp', 'favicon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'site.webmanifest', 'og-image.jpg',
   'planet-1.png', 'planet-2.png', 'planet-3.png', '3d-astronaut.png', 'astronaut-in-spacesuit.png', 'nipun_mitra_software_developer.jpg',
 ]) {
   if (!existsSync(f)) throw new Error(`Missing ${f}`);
