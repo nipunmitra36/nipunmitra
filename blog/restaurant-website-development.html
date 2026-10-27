@@ -204,12 +204,6 @@
         <li><a href="../blog.html" class="rounded-full bg-white/10 px-3.5 py-2 text-white" aria-current="page">Blog</a></li>
       </ul>
       <div class="flex items-center gap-2">
-        <!-- Ambient music + click sounds (assets/main.js). Off until the visitor turns it on. -->
-        <button id="sound-btn" type="button" aria-pressed="false" aria-label="Turn on space music and sounds" title="Space music & sounds"
-                class="sound-btn relative grid h-10 w-10 place-items-center rounded-full text-white transition hover:bg-white/10">
-          <i class="sound-off fa-solid fa-volume-xmark text-base" aria-hidden="true"></i>
-          <span class="sound-on eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        </button>
         <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="inline-flex h-10 items-center gap-2 rounded-full bg-[#25D366] px-3 text-sm font-semibold text-[#052e16] transition hover:brightness-110 xl:px-4">
           <i class="fa-brands fa-whatsapp text-lg leading-none" aria-hidden="true"></i><span class="hidden xl:inline">WhatsApp</span>
         </a>
@@ -470,6 +464,13 @@
     </div>
     <p class="mx-auto mt-12 max-w-6xl text-xs text-slate-400">© 2026 Nipun Mitra. Designed &amp; built in Dhaka.</p>
   </footer>
+
+  <!-- Space music + click sounds (assets/main.js): small fixed toggle, bottom-left. -->
+  <button id="sound-btn" type="button" aria-pressed="false" aria-label="Turn off space music and sounds" title="Space music"
+          class="sound-btn glass fixed bottom-5 left-5 z-50 grid h-10 w-10 place-items-center rounded-full text-white transition hover:bg-white/10 sm:bottom-7 sm:left-7">
+    <i class="sound-off fa-solid fa-volume-xmark text-sm" aria-hidden="true"></i>
+    <span class="sound-on eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
 
   <!-- WhatsApp chat button -->
   <a href="https://wa.me/8801761227436?text=Hi%20Nipun%2C%20I%20found%20your%20portfolio%20and%20I'd%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"

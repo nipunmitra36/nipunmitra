@@ -236,8 +236,8 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
    - music: a slow, evolving pad of detuned oscillators (4-chord loop with long cross-fades),
      a gently sweeping low-pass filter, a generated reverb, and soft random "star" bell notes;
    - clicks: a short, soft two-tone chime on every button / link press.
-   Off by default; browsers only allow sound after a click, so it starts from the header button.
-   The choice is remembered; on the next page it resumes at the visitor's first click or key press. */
+   On by default; the small button at the bottom-left turns it off (remembered across pages).
+   Browsers only allow sound after a click, tap or key press, so playback begins at the first one. */
 (() => {
   const btn = document.getElementById('sound-btn');
   const AC = window.AudioContext || window.webkitAudioContext;
@@ -373,20 +373,26 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   // Pause while the tab is hidden.
   document.addEventListener('visibilitychange', () => { if (ctx && on) (document.hidden ? ctx.suspend() : ctx.resume()); });
 
-  // Remembered "on": resume at the first interaction on this page (browsers require one).
-  const pref = store.get();
-  if (pref === 'on') {
-    btn.classList.add('pending');
-    const resume = (e) => {
-      if (e.target.closest?.('#sound-btn')) return; // the button handles itself
-      removeEventListener('pointerdown', resume, true); removeEventListener('keydown', resume, true);
-      btn.classList.remove('pending');
-      if (!on) start();
+  // On by default (unless the visitor switched it off). Browsers block sound until the first click,
+  // tap or key press, so: try to play right away, and if the browser says no, start at that first interaction.
+  if (store.get() !== 'off') {
+    const waitForGesture = () => {
+      btn.classList.add('pending');
+      const resume = (e) => {
+        if (e.target.closest?.('#sound-btn')) return; // the button handles itself
+        removeEventListener('pointerdown', resume, true); removeEventListener('keydown', resume, true);
+        btn.classList.remove('pending');
+        if (!on) start();
+      };
+      addEventListener('pointerdown', resume, true);
+      addEventListener('keydown', resume, true);
     };
-    addEventListener('pointerdown', resume, true);
-    addEventListener('keydown', resume, true);
-  } else if (pref === null) {
-    btn.classList.add('sound-hint'); // first visit: a gentle pulse invites people to try it
+    if (navigator.userActivation?.hasBeenActive) start(); // already interacted (e.g. arrived via a click)
+    else {
+      init();
+      ctx.resume().catch(() => {});
+      setTimeout(() => (ctx.state === 'running' ? start() : waitForGesture()), 150);
+    }
   }
 })();
 
