@@ -57,6 +57,12 @@ function header(base, active) {
 ${MENU.map((m) => `        <li><a href="${base}${m.file}" class="${m.key === active ? activeCls : linkCls}"${current(m)}>${m.label}</a></li>`).join('\n')}
       </ul>
       <div class="flex items-center gap-2">
+        <!-- Ambient music + click sounds (assets/main.js). Off until the visitor turns it on. -->
+        <button id="sound-btn" type="button" aria-pressed="false" aria-label="Turn on space music and sounds" title="Space music & sounds"
+                class="sound-btn relative grid h-10 w-10 place-items-center rounded-full text-white transition hover:bg-white/10">
+          <i class="sound-off fa-solid fa-volume-xmark text-base" aria-hidden="true"></i>
+          <span class="sound-on eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </button>
         <a href="${WA}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="inline-flex h-10 items-center gap-2 rounded-full bg-[#25D366] px-3 text-sm font-semibold text-[#052e16] transition hover:brightness-110 xl:px-4">
           <i class="fa-brands fa-whatsapp text-lg leading-none" aria-hidden="true"></i><span class="hidden xl:inline">WhatsApp</span>
         </a>

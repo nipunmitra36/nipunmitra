@@ -231,6 +231,165 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   })(t0);
 })();
 
+/* ---------- Sound: ambient space music + premium click sounds ----------
+   Everything is synthesised with the Web Audio API (no audio files to download):
+   - music: a slow, evolving pad of detuned oscillators (4-chord loop with long cross-fades),
+     a gently sweeping low-pass filter, a generated reverb, and soft random "star" bell notes;
+   - clicks: a short, soft two-tone chime on every button / link press.
+   Off by default; browsers only allow sound after a click, so it starts from the header button.
+   The choice is remembered; on the next page it resumes at the visitor's first click or key press. */
+(() => {
+  const btn = document.getElementById('sound-btn');
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!btn || !AC) { btn?.remove(); return; }
+
+  const KEY = 'nm-sound';
+  const store = { get: () => { try { return localStorage.getItem(KEY); } catch { return null; } }, set: (v) => { try { localStorage.setItem(KEY, v); } catch {} } };
+  const mtof = (m) => 440 * 2 ** ((m - 69) / 12);
+
+  let ctx, master, music, bells, sfx, reverb, on = false, chordTimer, bellTimer, chordIndex = 0;
+
+  function makeReverb(seconds = 4.5, decay = 2.8) {
+    const len = Math.floor(ctx.sampleRate * seconds), buf = ctx.createBuffer(2, len, ctx.sampleRate);
+    for (let ch = 0; ch < 2; ch++) {
+      const d = buf.getChannelData(ch);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** decay;
+    }
+    const conv = ctx.createConvolver();
+    conv.buffer = buf;
+    return conv;
+  }
+
+  function init() {
+    ctx = new AC();
+    master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+    reverb = makeReverb();
+    const wet = ctx.createGain(); wet.gain.value = 0.8; reverb.connect(wet).connect(master);
+
+    // Pad → low-pass (slowly sweeping) → dry + reverb
+    music = ctx.createGain(); music.gain.value = 0;
+    const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 850; lp.Q.value = 0.6;
+    const lfo = ctx.createOscillator(), depth = ctx.createGain();
+    lfo.frequency.value = 0.04; depth.gain.value = 380; lfo.connect(depth).connect(lp.frequency); lfo.start();
+    music.connect(lp); lp.connect(master); lp.connect(reverb);
+
+    bells = ctx.createGain(); bells.gain.value = 0; bells.connect(reverb); bells.connect(master);
+    sfx = ctx.createGain(); sfx.gain.value = 0.55; sfx.connect(master); sfx.connect(reverb);
+  }
+
+  // A minor colour: Am9 → Fmaj7#11 → Cmaj9 → Em9 (MIDI notes, low register)
+  const CHORDS = [[45, 52, 57, 59, 60, 64], [41, 48, 53, 57, 59, 64], [36, 43, 52, 55, 59, 62], [40, 47, 55, 59, 62, 66]];
+  const HOLD = 13, FADE = 6;
+
+  function playChord(notes) {
+    const t = ctx.currentTime;
+    for (const m of notes) {
+      for (const cents of [-7, 7]) {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = m < 48 ? 'sine' : 'triangle';
+        o.frequency.value = mtof(m);
+        o.detune.value = cents;
+        const level = m < 48 ? 0.07 : 0.028;
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(level, t + FADE);
+        g.gain.setValueAtTime(level, t + HOLD);
+        g.gain.linearRampToValueAtTime(0, t + HOLD + FADE);
+        o.connect(g).connect(music);
+        o.start(t);
+        o.stop(t + HOLD + FADE + 0.1);
+      }
+    }
+  }
+  const nextChord = () => { playChord(CHORDS[chordIndex++ % CHORDS.length]); chordTimer = setTimeout(nextChord, HOLD * 1000); };
+
+  // Distant "star" bells: A minor pentatonic, random timing
+  const STARS = [69, 72, 74, 76, 79, 81, 84, 88];
+  function bell() {
+    const t = ctx.currentTime, f = mtof(STARS[(Math.random() * STARS.length) | 0]);
+    for (const [mult, lvl] of [[1, 0.035], [2.01, 0.01]]) {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.value = f * mult;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(lvl, t + 0.015);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 3.2);
+      o.connect(g).connect(bells);
+      o.start(t); o.stop(t + 3.3);
+    }
+    bellTimer = setTimeout(bell, 2200 + Math.random() * 4800);
+  }
+
+  // Premium click: soft, short two-tone chime with a quick pitch glide.
+  function click() {
+    if (!on || !ctx) return;
+    const t = ctx.currentTime;
+    [[1320, 660, 0.16, 'sine'], [2640, 1320, 0.04, 'triangle']].forEach(([from, to, lvl, type]) => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type;
+      o.frequency.setValueAtTime(from, t);
+      o.frequency.exponentialRampToValueAtTime(to, t + 0.12);
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(lvl, t + 0.004);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+      o.connect(g).connect(sfx);
+      o.start(t); o.stop(t + 0.25);
+    });
+  }
+
+  const ramp = (param, value, seconds) => { const t = ctx.currentTime; param.cancelScheduledValues(t); param.setValueAtTime(param.value, t); param.linearRampToValueAtTime(value, t + seconds); };
+
+  function start() {
+    if (!ctx) init();
+    ctx.resume();
+    on = true;
+    ramp(master.gain, 0.4, 1.2);
+    ramp(music.gain, 1, 4);
+    ramp(bells.gain, 1, 4);
+    if (!chordTimer) nextChord();
+    if (!bellTimer) bellTimer = setTimeout(bell, 1500);
+    render();
+  }
+  function stop() {
+    on = false;
+    clearTimeout(chordTimer); clearTimeout(bellTimer); chordTimer = bellTimer = null;
+    if (ctx) { ramp(master.gain, 0, 1.2); setTimeout(() => { if (!on) ctx.suspend(); }, 1300); }
+    render();
+  }
+  function render() {
+    btn.setAttribute('aria-pressed', String(on));
+    btn.setAttribute('aria-label', on ? 'Turn off space music and sounds' : 'Turn on space music and sounds');
+    btn.classList.toggle('playing', on);
+  }
+
+  btn.addEventListener('click', () => {
+    btn.classList.remove('sound-hint');
+    if (on) { stop(); store.set('off'); } else { start(); store.set('on'); click(); }
+  });
+
+  // Click sound on every button / link press.
+  document.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('a, button, summary, [role="button"], input[type="submit"]') && !e.target.closest('#sound-btn')) click();
+  }, { capture: true, passive: true });
+
+  // Pause while the tab is hidden.
+  document.addEventListener('visibilitychange', () => { if (ctx && on) (document.hidden ? ctx.suspend() : ctx.resume()); });
+
+  // Remembered "on": resume at the first interaction on this page (browsers require one).
+  const pref = store.get();
+  if (pref === 'on') {
+    btn.classList.add('pending');
+    const resume = (e) => {
+      if (e.target.closest?.('#sound-btn')) return; // the button handles itself
+      removeEventListener('pointerdown', resume, true); removeEventListener('keydown', resume, true);
+      btn.classList.remove('pending');
+      if (!on) start();
+    };
+    addEventListener('pointerdown', resume, true);
+    addEventListener('keydown', resume, true);
+  } else if (pref === null) {
+    btn.classList.add('sound-hint'); // first visit: a gentle pulse invites people to try it
+  }
+})();
+
 /* ---------- Mobile menu ---------- */
 const menu = document.getElementById('mobile-menu');
 const menuBtn = document.getElementById('menu-btn');
