@@ -19,6 +19,7 @@ const screenshot = [400, 800, 1200];  // project screenshots and blog covers (12
 const sources = [
   ...['planet-1.png', 'planet-2.png', 'planet-3.png', '3d-astronaut.png'].map((f) => [f, decorative]),
   ['astronaut-in-spacesuit.png', [200, 408]],
+  ['nipun_mitra_software_developer.jpg', [400, 640, 938]],
   ...readdirSync(join(ROOT, 'images', 'projects')).filter((f) => f.endsWith('.jpg')).map((f) => [`images/projects/${f}`, screenshot]),
   ...readdirSync(join(ROOT, 'images', 'blog')).filter((f) => f.endsWith('.jpg')).map((f) => [`images/blog/${f}`, screenshot]),
 ];

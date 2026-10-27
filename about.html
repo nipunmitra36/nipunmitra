@@ -71,7 +71,13 @@
       "jobTitle": "Software Developer",
       "description": "Software developer with 3+ years of experience building responsive, performant web applications using React, Next.js and TypeScript.",
       "url": "{{SITE_URL}}/",
-      "image": "{{SITE_URL}}/og-image.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{SITE_URL}}/nipun_mitra_software_developer.jpg",
+        "width": 938,
+        "height": 1280,
+        "caption": "Nipun Mitra, software developer"
+      },
       "email": "mailto:nipunmitra03@gmail.com",
       "telephone": "+8801761227436",
       "contactPoint": {
@@ -336,7 +342,15 @@
           <h1 class="mt-3 font-display text-3xl font-bold text-white sm:text-5xl">A bit <span class="text-gradient">about me</span></h1>
         </div>
 
-        <div class="grid gap-6 lg:grid-cols-5">
+        <div class="grid items-center gap-10 lg:grid-cols-5">
+          <figure class="reveal relative mx-auto w-full max-w-sm lg:col-span-2">
+            <div class="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-nebula-violet/40 via-nebula-cyan/20 to-nebula-pink/30 blur-2xl" aria-hidden="true"></div>
+            <div class="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_20px_60px_-15px_rgba(139,92,246,.45)]">
+              <img sizes="(min-width: 1024px) 384px, (min-width: 640px) 384px, calc(100vw - 32px)" src="images/opt/nipun_mitra_software_developer-08996c86-400.webp" srcset="images/opt/nipun_mitra_software_developer-08996c86-400.webp 400w, images/opt/nipun_mitra_software_developer-08996c86-640.webp 640w, images/opt/nipun_mitra_software_developer-08996c86-938.webp 938w" alt="Nipun Mitra, software developer, standing on a beach at sunset" width="938" height="1280" fetchpriority="high" decoding="async" class="aspect-[938/1280] w-full object-cover" />
+            </div>
+            <figcaption class="glass absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-5 py-2 text-sm text-white"><i class="fa-solid fa-location-dot mr-2 text-nebula-cyan" aria-hidden="true"></i>Nipun Mitra · Dhaka</figcaption>
+          </figure>
+
           <div class="reveal space-y-5 text-lg leading-relaxed text-slate-400 lg:col-span-3">
             <p>
               I started out building websites with plain <span class="text-white">HTML, CSS and Bootstrap</span> at Mamurjor IT, shipping more than
@@ -354,7 +368,7 @@
             </p>
           </div>
 
-          <div class="grid grid-cols-2 gap-4 lg:col-span-2">
+          <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:col-span-5">
             <div class="reveal glass glow-border rounded-3xl p-6">
               <p class="font-display text-4xl font-bold text-white"><span class="counter" data-to="3">3</span>+</p>
               <p class="mt-2 text-sm text-slate-400">Years of experience</p>
@@ -376,7 +390,7 @@
       </div>
     </section>
 
-    <section class="px-4 pb-28">
+    <section class="px-4 pb-28" data-search-ignore>
       <div class="reveal glass relative mx-auto max-w-6xl overflow-clip rounded-[2rem] p-8 sm:p-12">
         <div class="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-nebula-violet/25 blur-3xl"></div>
         <div class="pointer-events-none absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-nebula-cyan/20 blur-3xl"></div>

@@ -7,11 +7,22 @@
   "scripts": {
     "images": "node scripts/images.mjs",
     "generate": "node scripts/generate.mjs",
+    "index": "node scripts/search-index.mjs",
     "build": "node build.mjs",
-    "preview": "npx serve@14.2.4 dist"
+    "preview": "npx serve@14.2.4 dist",
+    "serve:local": "node scripts/serve-local.mjs",
+    "test": "node scripts/generate.mjs && node scripts/search-index.mjs http://localhost:8888 && node --test \"tests/*.test.mjs\""
   },
   "devDependencies": {
+    "node-html-parser": "^9.0.5",
     "sharp": "^0.33.5",
     "tailwindcss": "3.4.5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

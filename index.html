@@ -88,7 +88,13 @@
       "jobTitle": "Software Developer",
       "description": "Software developer with 3+ years of experience building responsive, performant web applications using React, Next.js and TypeScript.",
       "url": "{{SITE_URL}}/",
-      "image": "{{SITE_URL}}/og-image.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{SITE_URL}}/nipun_mitra_software_developer.jpg",
+        "width": 938,
+        "height": 1280,
+        "caption": "Nipun Mitra, software developer"
+      },
       "email": "mailto:nipunmitra03@gmail.com",
       "telephone": "+8801761227436",
       "contactPoint": {
@@ -556,32 +562,32 @@
         </div>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
+          <article id="custom-software-development" class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-violet/15 text-xl text-nebula-violet"><i class="fa-solid fa-code" aria-hidden="true"></i></span>
             <h3 class="mt-5 font-display text-lg font-bold text-white">Custom Software Development</h3>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Portals, dashboards and internal tools built around your workflow — replacing spreadsheets and disconnected apps with one system you own.</p>
             <a href="blog/custom-software-development.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">Guide to custom software development <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
           </article>
-          <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
+          <article id="app-development" class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-400/15 text-xl text-emerald-400"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span>
             <h3 class="mt-5 font-display text-lg font-bold text-white">App Development</h3>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Web apps and SaaS platforms from idea to launch — MVP scoping, a Next.js frontend, a Laravel or Node.js API, testing, deployment and AI-integrated features.</p>
             <a href="blog/web-app-development.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">App development, step by step <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
           </article>
-          <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
+          <article id="uiux-design" class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-pink/15 text-xl text-nebula-pink"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i></span>
             <h3 class="mt-5 font-display text-lg font-bold text-white">UI/UX Design</h3>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">User flows, wireframes and polished interfaces in Figma — clear, accessible and easy to use, then turned into pixel-perfect code.</p>
             <a href="blog/ui-ux-design.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">Why good UI/UX design sells <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
           </article>
-          <article class="reveal glass glow-border flex flex-col rounded-3xl p-7">
+          <article id="web-design-and-development" class="reveal glass glow-border flex flex-col rounded-3xl p-7">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-cyan/15 text-xl text-nebula-cyan"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span>
             <h3 class="mt-5 font-display text-lg font-bold text-white">Web Design &amp; Development</h3>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Fast, responsive, SEO-friendly websites — business sites, restaurant and booking websites, e-commerce — built with Next.js, Tailwind CSS, Laravel or WordPress.</p>
             <a href="blog/frontend-website-development.html" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-nebula-cyan hover:text-white">Guide to website development <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
             <p class="mt-3 text-sm text-slate-400">Also: <a href="blog/restaurant-website-development.html" class="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">restaurant websites</a> · <a href="blog/booking-website-development.html" class="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">booking websites</a></p>
           </article>
-          <article class="reveal glass glow-border flex flex-col rounded-3xl p-7 lg:col-span-2">
+          <article id="seo-and-digital-marketing" class="reveal glass glow-border flex flex-col rounded-3xl p-7 lg:col-span-2">
             <span class="grid h-12 w-12 place-items-center rounded-2xl bg-nebula-amber/15 text-xl text-nebula-amber"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
             <h3 class="mt-5 font-display text-lg font-bold text-white">SEO &amp; Digital Marketing</h3>
             <p class="mt-3 flex-1 leading-relaxed text-slate-400">Technical SEO, fast Core Web Vitals, structured data and on-page optimisation, plus content, local SEO and analytics that help the right customers find you — and turn visits into enquiries.</p>
@@ -604,66 +610,7 @@
           <a href="projects.html" class="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">View all projects <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
         </div>
         <div id="project-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <a href="https://cwskills.com" target="_blank" rel="noopener" data-cat="next" style="--h:265"
-          class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
-          <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/cwskills-21de148d-400.webp" srcset="images/opt/cwskills-21de148d-400.webp 400w, images/opt/cwskills-21de148d-800.webp 800w, images/opt/cwskills-21de148d-1200.webp 1200w" alt="CW Skills IT training platform homepage, built with Next.js and Redux" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
-          </div>
-          <div class="relative flex flex-1 flex-col p-6">
-          <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(265,90%,60%,.12)"></div>
-          <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(265,90%,72%)">IT Training Platform</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">CW Skills</h3>
-          <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Professional IT training portal built with Next.js and Redux.</p>
-          <div class="relative mt-5 flex flex-wrap gap-1.5">
-          <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Next.js</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">TypeScript</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Redux</span>
-          </div>
-          <div class="relative mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-sm">
-          <span class="text-slate-400">cwskills.com</span>
-          <span class="grid h-8 w-8 place-items-center rounded-full bg-white/5 text-white transition duration-500 group-hover:rotate-[-45deg] group-hover:bg-white group-hover:text-void"><i class="fa-solid fa-arrow-right text-xs"></i></span>
-          </div>
-          </div>
-          </a>
-          <a href="https://bmu.ac.bd" target="_blank" rel="noopener" data-cat="laravel" style="--h:190"
-          class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
-          <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/bmu-a1bd81e8-400.webp" srcset="images/opt/bmu-a1bd81e8-400.webp 400w, images/opt/bmu-a1bd81e8-800.webp 800w, images/opt/bmu-a1bd81e8-1200.webp 1200w" alt="Bangladesh Medical University official website homepage, built with Laravel and Livewire" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
-          </div>
-          <div class="relative flex flex-1 flex-col p-6">
-          <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(190,90%,60%,.12)"></div>
-          <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(190,90%,72%)">Official Website</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Bangladesh Medical University</h3>
-          <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Official website for Bangladesh's premier medical university, built with Laravel/Livewire.</p>
-          <div class="relative mt-5 flex flex-wrap gap-1.5">
-          <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Laravel</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Livewire</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">JavaScript</span>
-          </div>
-          <div class="relative mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-sm">
-          <span class="text-slate-400">bmu.ac.bd</span>
-          <span class="grid h-8 w-8 place-items-center rounded-full bg-white/5 text-white transition duration-500 group-hover:rotate-[-45deg] group-hover:bg-white group-hover:text-void"><i class="fa-solid fa-arrow-right text-xs"></i></span>
-          </div>
-          </div>
-          </a>
-          <a href="https://crystalvalet.ie" target="_blank" rel="noopener" data-cat="next" style="--h:205"
-          class="project-card reveal glass glow-border group relative flex flex-col overflow-hidden rounded-3xl">
-          <div class="relative aspect-[1200/630] overflow-hidden rounded-t-3xl bg-white/5">
-          <img sizes="(min-width: 1024px) 368px, (min-width: 640px) calc(50vw - 28px), calc(100vw - 32px)" src="images/opt/crystalvalet-0845f8b9-400.webp" srcset="images/opt/crystalvalet-0845f8b9-400.webp 400w, images/opt/crystalvalet-0845f8b9-800.webp 800w, images/opt/crystalvalet-0845f8b9-1200.webp 1200w" alt="Crystal Valet car valeting and booking website homepage, built with Next.js" width="1200" height="630" loading="lazy" decoding="async" class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c1d] via-transparent to-transparent opacity-80"></div>
-          </div>
-          <div class="relative flex flex-1 flex-col p-6">
-          <div class="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full blur-3xl" style="background:hsla(205,90%,60%,.12)"></div>
-          <p class="relative text-xs font-semibold uppercase tracking-widest" style="color:hsl(205,90%,72%)">Car Valeting · Ireland</p>
-          <h3 class="relative mt-1 font-display text-lg font-bold text-white">Crystal Valet</h3>
-          <p class="relative mt-3 flex-1 text-sm leading-relaxed text-slate-400">Conversion-focused marketing & booking site for an Irish car valeting business.</p>
-          <div class="relative mt-5 flex flex-wrap gap-1.5">
-          <span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Next.js</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">TypeScript</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Tailwind</span><span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">Redux</span>
-          </div>
-          <div class="relative mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-sm">
-          <span class="text-slate-400">crystalvalet.ie</span>
-          <span class="grid h-8 w-8 place-items-center rounded-full bg-white/5 text-white transition duration-500 group-hover:rotate-[-45deg] group-hover:bg-white group-hover:text-void"><i class="fa-solid fa-arrow-right text-xs"></i></span>
-          </div>
-          </div>
-          </a>
+          
         </div>
       </div>
     </section>
@@ -724,7 +671,7 @@
       </div>
     </section>
 
-    <section class="px-4 pb-28">
+    <section class="px-4 pb-28" data-search-ignore>
       <div class="reveal glass relative mx-auto max-w-6xl overflow-clip rounded-[2rem] p-8 sm:p-12">
         <div class="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-nebula-violet/25 blur-3xl"></div>
         <div class="pointer-events-none absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-nebula-cyan/20 blur-3xl"></div>

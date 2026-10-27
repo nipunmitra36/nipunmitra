@@ -85,6 +85,24 @@
       }
     ]
   },
+  "nipun_mitra_software_developer.jpg": {
+    "width": 938,
+    "height": 1280,
+    "variants": [
+      {
+        "w": 400,
+        "file": "images/opt/nipun_mitra_software_developer-08996c86-400.webp"
+      },
+      {
+        "w": 640,
+        "file": "images/opt/nipun_mitra_software_developer-08996c86-640.webp"
+      },
+      {
+        "w": 938,
+        "file": "images/opt/nipun_mitra_software_developer-08996c86-938.webp"
+      }
+    ]
+  },
   "images/projects/alnoor.jpg": {
     "width": 1200,
     "height": 630,

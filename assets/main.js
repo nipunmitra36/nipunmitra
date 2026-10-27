@@ -170,13 +170,27 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu
   const status = document.getElementById('form-status');
   const btn = form.querySelector('button[type="submit"]');
   const label = btn.querySelector('[data-label]'), icon = btn.querySelector('[data-icon]');
-  const WA = 'https://wa.me/8801761227436';
+  const EMAIL = 'nipunmitra03@gmail.com', WA = 'https://wa.me/8801761227436';
+  const styles = {
+    ok: 'border-emerald-400/30 bg-emerald-400/10 text-emerald-200',
+    info: 'border-amber-400/30 bg-amber-400/10 text-amber-100',
+    error: 'border-red-400/30 bg-red-400/10 text-red-200',
+  };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
   const show = (kind, html) => {
-    status.className = 'rounded-xl border px-4 py-3 text-sm ' + (kind === 'ok'
-      ? 'border-emerald-400/30 bg-emerald-400/10 text-emerald-200'
-      : 'border-red-400/30 bg-red-400/10 text-red-200');
+    status.className = 'rounded-xl border px-4 py-3 text-sm leading-relaxed ' + styles[kind];
     status.innerHTML = html;
+  };
+
+  // Ready-made WhatsApp / email links carrying what the visitor typed, so nothing is lost if sending fails.
+  const fallback = (d) => {
+    const text = `Hi Nipun, I'm ${d.name} (${d.email}).${d.subject ? `\nSubject: ${d.subject}` : ''}\n\n${d.message}`;
+    const btn = 'mt-3 mr-2 inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold';
+    return `<div>
+      <a href="${WA}?text=${encodeURIComponent(text)}" target="_blank" rel="noopener" class="${btn} bg-[#25D366] text-[#052e16]"><i class="fa-brands fa-whatsapp"></i> Send via WhatsApp</a>
+      <a href="mailto:${EMAIL}?subject=${encodeURIComponent(d.subject || `Hello from ${d.name}`)}&body=${encodeURIComponent(text)}" class="${btn} bg-white/10 text-white"><i class="fa-solid fa-envelope"></i> Send by email</a>
+    </div>`;
   };
   const busy = (on) => {
     btn.disabled = on;
@@ -188,8 +202,15 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form));
     if (data._honey) return; // bot
+    const visitor = { name: data.name, email: data.email, subject: data.subject, message: data.message };
     if (data.subject) data._subject = `${data.subject} — from ${data.name}`;
     data._replyto = data.email;
+
+    // FormSubmit only accepts messages from a real website, not a page opened from disk.
+    if (location.protocol === 'file:') {
+      show('info', `<i class="fa-solid fa-circle-info mr-2"></i>The form sends messages once the site is online — it can’t send from a page opened on your computer. You can send this message right now instead:${fallback(visitor)}`);
+      return;
+    }
 
     busy(true);
     try {
@@ -199,12 +220,22 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu
         body: JSON.stringify(data),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || `HTTP ${res.status}`);
-      form.reset();
-      show('ok', '<i class="fa-solid fa-circle-check mr-2"></i>Thanks! Your message has been sent — I’ll get back to you soon.');
+      if (res.ok && String(json.success) === 'true') {
+        form.reset();
+        show('ok', '<i class="fa-solid fa-circle-check mr-2"></i>Thanks! Your message has been sent — I’ll get back to you soon.');
+        return;
+      }
+      const reason = String(json.message || `HTTP ${res.status}`);
+      console.warn('Contact form:', reason);
+      if (/activat/i.test(reason)) {
+        // First-ever submission: FormSubmit emails the site owner an "Activate Form" link.
+        show('info', `<i class="fa-solid fa-hourglass-half mr-2"></i>The contact form is being set up, so this message couldn’t be delivered yet. Please send it directly:${fallback(visitor)}`);
+      } else {
+        show('error', `<i class="fa-solid fa-triangle-exclamation mr-2"></i>Sorry, the message couldn’t be sent (${esc(reason)}). You can send it directly instead:${fallback(visitor)}`);
+      }
     } catch (err) {
       console.warn('Contact form:', err);
-      show('error', `<i class="fa-solid fa-triangle-exclamation mr-2"></i>Sorry, the message couldn’t be sent. Please try again, or reach me on <a href="${WA}" target="_blank" rel="noopener" class="font-semibold underline">WhatsApp</a> or at <a href="mailto:nipunmitra03@gmail.com" class="font-semibold underline">nipunmitra03@gmail.com</a>.`);
+      show('error', `<i class="fa-solid fa-triangle-exclamation mr-2"></i>Sorry, the message couldn’t be sent — please check your connection. You can send it directly instead:${fallback(visitor)}`);
     } finally {
       busy(false);
     }

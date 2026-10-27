@@ -17,6 +17,8 @@ import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { generate } from './scripts/generate.mjs';
 import { buildImages } from './scripts/images.mjs';
+import { writeSearchIndex } from './scripts/search-index.mjs';
+import { openApi, openAiTools } from './scripts/api-docs.mjs';
 import { baseFor, canonicalFor } from './src/layout.mjs';
 import { posts } from './src/posts.mjs';
 
@@ -117,10 +119,19 @@ for (const p of pages) {
 }
 writeFileSync(join(OUT, '404.html'), fill(readFileSync('404.html', 'utf8')));
 
+// ---------- Search API (Netlify Functions in netlify/functions/) ----------
+// The content index is rebuilt from the freshly generated pages; Netlify bundles it with the
+// functions after this build step. Machine-readable API docs go next to the site.
+const searchIndex = writeSearchIndex({ siteUrl: SITE_URL });
+mkdirSync(join(OUT, 'api', 'v1'), { recursive: true });
+writeFileSync(join(OUT, 'api', 'v1', 'openapi.json'), JSON.stringify(openApi(SITE_URL), null, 2) + '\n');
+writeFileSync(join(OUT, 'api', 'v1', 'openai-tools.json'), JSON.stringify(openAiTools(SITE_URL), null, 2) + '\n');
+console.log(`Search index: ${searchIndex.document_count} documents (${Object.entries(searchIndex.counts).map(([t, c]) => `${t} ${c}`).join(', ')})`);
+
 // ---------- Static files ----------
 for (const f of [
   'images', 'assets/fonts', 'assets/fonts.css', 'assets/icons', 'assets/vendor', 'favicon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'site.webmanifest', 'og-image.jpg',
-  'planet-1.png', 'planet-2.png', 'planet-3.png', '3d-astronaut.png', 'astronaut-in-spacesuit.png',
+  'planet-1.png', 'planet-2.png', 'planet-3.png', '3d-astronaut.png', 'astronaut-in-spacesuit.png', 'nipun_mitra_software_developer.jpg',
 ]) {
   if (!existsSync(f)) throw new Error(`Missing ${f}`);
   cpSync(f, join(OUT, f), { recursive: true });
@@ -238,6 +249,13 @@ ${projectsLd.map((i) => `- [${i.item.name}](${i.item.url})`).join('\n')}
 ## Blog
 
 ${sorted.map((p) => `- [${p.title}](${url(`blog/${p.slug}.html`)}): ${p.description}`).join('\n')}
+
+## Search API
+
+- [Search endpoint](${SITE_URL}/api/v1/search?q=projects): \`GET /api/v1/search?q=<query>&limit=1-20&type=<types>\` — JSON results with titles, URLs and excerpts from this site
+- [OpenAPI description](${SITE_URL}/api/v1/openapi.json)
+- [OpenAI function-calling tool definitions](${SITE_URL}/api/v1/openai-tools.json)
+- MCP server (Streamable HTTP): ${SITE_URL}/mcp — tool \`search_portfolio\`
 
 ## Optional
 

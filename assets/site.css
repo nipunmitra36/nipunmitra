@@ -177,3 +177,6 @@ html.lenis, html.lenis body { height: auto; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .001ms !important; }
 }
+
+/* Linked cards (e.g. projects.html#cw-skills from the search API) stop below the fixed menu. */
+.project-card[id], article[id], .glass[id] { scroll-margin-top: 110px; }

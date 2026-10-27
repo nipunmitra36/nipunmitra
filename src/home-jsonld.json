@@ -44,7 +44,13 @@
       "jobTitle": "Software Developer",
       "description": "Software developer with 3+ years of experience building responsive, performant web applications using React, Next.js and TypeScript.",
       "url": "{{SITE_URL}}/",
-      "image": "{{SITE_URL}}/og-image.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{SITE_URL}}/nipun_mitra_software_developer.jpg",
+        "width": 938,
+        "height": 1280,
+        "caption": "Nipun Mitra, software developer"
+      },
       "email": "mailto:nipunmitra03@gmail.com",
       "telephone": "+8801761227436",
       "contactPoint": {
