@@ -180,3 +180,17 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Linked cards (e.g. projects.html#cw-skills from the search API) stop below the fixed menu. */
 .project-card[id], article[id], .glass[id] { scroll-margin-top: 110px; }
+
+/* ---------- Home: endless project slider ----------
+   Track = two identical sets of cards; sliding by -50% lands exactly on the start of the copy,
+   so the loop is seamless. Pauses on hover/focus; edges fade out. */
+.slider { -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.slider-track { animation: slider 48s linear infinite; will-change: transform; }
+.slider:hover .slider-track, .slider:focus-within .slider-track { animation-play-state: paused; }
+@keyframes slider { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 639px) { .slider-track { animation-duration: 36s; } }
+@media (prefers-reduced-motion: reduce) {
+  .slider { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .slider-track { animation: none !important; }
+  .slider-track > [aria-hidden="true"] { display: none; }
+}

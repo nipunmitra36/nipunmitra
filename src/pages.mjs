@@ -55,7 +55,28 @@ const page = ({ file, active, label, title, description, type = 'WebPage', extra
 });
 
 // ---------- Home ----------
-const projectCards = [...section('projects').matchAll(/<a href="https:\/\/[^"]*" target="_blank" rel="noopener" data-cat=[\s\S]*?\n\s*<\/a>/g)].map((m) => m[0]);
+const projectCards = [...section('projects').matchAll(/<a (?:id="[^"]*" )?href="https:\/\/[^"]*" target="_blank" rel="noopener" data-cat=[\s\S]*?\n\s*<\/a>/g)].map((m) => m[0]);
+
+// Endless, smooth project slider for the home page. The cards are rendered twice in a row and the
+// track slides left by exactly one set, so the loop restarts without a visible jump (CSS: .slider-track).
+// The copy is hidden from screen readers and keyboard users; ids are dropped (they live on projects.html).
+function projectSlider(cards) {
+  const prep = (c) =>
+    c
+      .replace(/^<a id="[^"]*" /, '<a ')
+      .replace('class="project-card reveal ', 'class="project-card w-[300px] shrink-0 sm:w-[360px] ');
+  const set = cards.map(prep).join('\n          ');
+  return `<div class="slider relative overflow-hidden py-2" aria-label="Featured projects" role="region">
+        <div class="slider-track flex w-max">
+          <div class="flex gap-6 pr-6">
+          ${set}
+          </div>
+          <div class="flex gap-6 pr-6" aria-hidden="true" inert>
+          ${set.replace(/ loading="lazy"/g, ' loading="lazy" tabindex="-1"')}
+          </div>
+        </div>
+      </div>`;
+}
 
 const homeMain = [
   section('hero').replace('href="#about" class="absolute bottom-6', 'href="#services" class="absolute bottom-6'),
@@ -71,10 +92,8 @@ const homeMain = [
           </div>
           <a href="projects.html" class="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">View all projects <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
         </div>
-        <div id="project-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          ${projectCards.slice(0, 3).join('\n          ')}
-        </div>
       </div>
+      ${projectSlider(projectCards.slice(0, 6))}
     </section>
 
     <section id="latest-articles" class="px-4 pb-28">
