@@ -57,6 +57,114 @@ const page = ({ file, active, label, title, description, type = 'WebPage', extra
 // ---------- Home ----------
 const projectCards = [...section('projects').matchAll(/<a (?:id="[^"]*" )?href="https:\/\/[^"]*" target="_blank" rel="noopener" data-cat=[\s\S]*?\n\s*<\/a>/g)].map((m) => m[0]);
 
+// ---------- Gigs: Fiverr-style service offers (home + services page) ----------
+// Ordered through WhatsApp, email or phone; each button carries the gig name.
+const GIGS = [
+  {
+    id: 'gig-nextjs',
+    title: 'I will build a custom website with Next.js and TypeScript',
+    name: 'Custom web design & development (Next.js, TypeScript)',
+    icons: ['nextjs', 'typescript', 'tailwindcss'],
+    hue: 265,
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    includes: ['Custom, pixel-perfect design from Figma', 'Fast, SEO-friendly pages with server rendering', 'Responsive on every device', 'API, CMS or dashboard integration'],
+    guide: 'blog/frontend-website-development.html',
+  },
+  {
+    id: 'gig-wordpress',
+    title: 'I will design and develop a professional WordPress website',
+    name: 'Web design & development (WordPress)',
+    icons: ['wordpress', 'php'],
+    hue: 205,
+    tags: ['WordPress', 'WooCommerce', 'Elementor'],
+    includes: ['Business, blog or e-commerce website', 'Easy to update yourself — no code needed', 'WooCommerce shop and payment setup', 'Speed and on-page SEO optimisation'],
+    guide: 'blog/sell-online-in-bangladesh.html',
+  },
+  {
+    id: 'gig-flutter',
+    title: 'I will develop a cross-platform mobile app with Flutter',
+    name: 'App development (Flutter)',
+    icons: ['flutter'],
+    hue: 190,
+    tags: ['Flutter', 'Android', 'iOS'],
+    includes: ['One codebase for Android and iOS', 'Clean, modern UI with smooth animations', 'REST API and backend integration', 'Help with Play Store / App Store release'],
+    guide: 'blog/web-app-development.html',
+  },
+  {
+    id: 'gig-laravel',
+    title: 'I will build custom web software with PHP and Laravel',
+    name: 'Custom web & software development (PHP, Laravel)',
+    icons: ['laravel', 'php'],
+    hue: 5,
+    tags: ['Laravel', 'PHP', 'Livewire', 'MySQL'],
+    includes: ['Admin panels, portals and business software', 'Booking, ticketing and management systems', 'Secure login, roles and permissions', 'Payment, SMS and email integration'],
+    guide: 'blog/custom-software-development.html',
+  },
+  {
+    id: 'gig-seo',
+    title: 'I will grow your business with SEO and digital marketing',
+    name: 'Digital marketing & SEO for business',
+    icons: [],
+    fa: 'fa-chart-line',
+    hue: 40,
+    tags: ['SEO', 'Local SEO', 'Analytics'],
+    includes: ['Technical SEO and site speed fixes', 'Keyword research and on-page optimisation', 'Google Business Profile and local SEO', 'Analytics and Search Console setup'],
+    guide: 'blog/seo-for-small-business.html',
+  },
+];
+
+const GIG_EMAIL = 'nipunmitra03@gmail.com';
+const GIG_PHONE = '+8801761227436';
+
+function gigCard(g) {
+  const msg = `Hi Nipun, I'm interested in your service: ${g.name}.`;
+  const wa = `https://wa.me/8801761227436?text=${encodeURIComponent(msg)}`;
+  const mail = `mailto:${GIG_EMAIL}?subject=${encodeURIComponent(`Order: ${g.name}`)}&body=${encodeURIComponent(msg + '\n\nProject details:\n')}`;
+  const art = g.icons.length
+    ? g.icons.map((i) => `<img src="assets/icons/${i}.svg" alt="" width="128" height="128" loading="lazy" class="h-12 w-12${['nextjs', 'wordpress'].includes(i) ? ' brightness-0 invert' : ''}" />`).join('')
+    : `<i class="fa-solid ${g.fa} text-5xl text-white" aria-hidden="true"></i>`;
+  return `
+          <article id="${g.id}" class="reveal glass glow-border flex w-full flex-col overflow-hidden rounded-3xl md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]" style="--h:${g.hue}">
+            <div class="relative grid h-36 place-items-center overflow-hidden" style="background:radial-gradient(circle at 30% 20%, hsla(${g.hue},90%,65%,.45), transparent 60%), linear-gradient(135deg, hsla(${g.hue},70%,25%,.9), #0b0c1d)">
+              <div class="flex items-center gap-4 drop-shadow-[0_8px_24px_rgba(0,0,0,.45)]">${art}</div>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <div class="flex items-center gap-2.5 text-sm">
+                <span class="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-nebula-violet to-nebula-cyan font-display text-[10px] font-bold text-white">NM</span>
+                <span class="font-semibold text-white">Nipun Mitra</span>
+                <span class="text-slate-400">· Software Developer</span>
+              </div>
+              <h3 class="mt-4 font-display text-lg font-bold leading-snug text-white">${g.title}</h3>
+              <div class="mt-3 flex flex-wrap gap-1.5">${g.tags.map((t) => `<span class="rounded-md bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-300">${t}</span>`).join('')}</div>
+              <ul class="mt-5 flex-1 space-y-2 text-sm text-slate-400">
+                ${g.includes.map((i) => `<li class="flex gap-2.5"><i class="fa-solid fa-check mt-1 text-emerald-400" aria-hidden="true"></i><span>${i}</span></li>`).join('\n                ')}
+              </ul>
+              <a href="${g.guide}" class="mt-5 text-sm font-semibold text-nebula-cyan hover:text-white">Read the guide <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i></a>
+              <div class="mt-5 border-t border-white/10 pt-5">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400">Contact to order · custom quote</p>
+                <div class="grid grid-cols-3 gap-2">
+                  <a href="${wa}" target="_blank" rel="noopener" class="flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366] py-2.5 text-sm font-semibold text-[#052e16] transition hover:brightness-110" aria-label="Order ${g.name} on WhatsApp"><i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i> WhatsApp</a>
+                  <a href="${mail}" class="flex items-center justify-center gap-1.5 rounded-xl bg-white/10 py-2.5 text-sm font-semibold text-white transition hover:bg-white/20" aria-label="Order ${g.name} by email"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email</a>
+                  <a href="tel:${GIG_PHONE}" class="flex items-center justify-center gap-1.5 rounded-xl bg-white/10 py-2.5 text-sm font-semibold text-white transition hover:bg-white/20" aria-label="Call about ${g.name}"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call</a>
+                </div>
+              </div>
+            </div>
+          </article>`;
+}
+
+const gigsSection = (headingTag = 'h2') => `
+    <section id="offers" class="px-4 pb-28">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal mb-10 max-w-3xl">
+          <p class="font-mono text-sm text-nebula-cyan">Offers</p>
+          <${headingTag} class="mt-3 font-display text-3xl font-bold text-white sm:text-5xl">Hire me <span class="text-gradient">for your project</span></${headingTag}>
+          <p class="mt-4 text-lg text-slate-400">Pick a service, tell me about your project on WhatsApp, email or phone, and I'll send you a custom quote.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">${GIGS.map(gigCard).join('')}
+        </div>
+      </div>
+    </section>`;
+
 // Endless, smooth project slider for the home page. The cards are rendered twice in a row and the
 // track slides left by exactly one set, so the loop restarts without a visible jump (CSS: .slider-track).
 // The copy is hidden from screen readers and keyboard users; ids are dropped (they live on projects.html).
@@ -82,6 +190,7 @@ const homeMain = [
   section('hero').replace('href="#about" class="absolute bottom-6', 'href="#services" class="absolute bottom-6'),
   section('marquee'),
   fixLinks(dropNumber(section('services'))),
+  gigsSection(),
   `
     <section id="featured-projects" class="px-4 py-28">
       <div class="mx-auto max-w-6xl">
@@ -136,14 +245,8 @@ const howIWork = `
       </div>
     </section>`;
 
-// [service name, page that explains it]
-const services = [
-  ['Custom software development', 'blog/custom-software-development.html'],
-  ['App development', 'blog/web-app-development.html'],
-  ['UI/UX design', 'blog/ui-ux-design.html'],
-  ['Web design and development', 'blog/frontend-website-development.html'],
-  ['SEO and digital marketing', 'blog/seo-for-small-business.html'],
-];
+// [service name, page that explains it] — the offers shown as gigs
+const services = GIGS.map((g) => [g.name, `services.html#${g.id}`]);
 
 export const pages = [
   {
@@ -184,7 +287,7 @@ export const pages = [
         })),
       },
     },
-    main: standalone('services') + howIWork + ctaBand(''),
+    main: standalone('services') + gigsSection() + howIWork + ctaBand(''),
   }),
   page({
     file: 'skills.html',

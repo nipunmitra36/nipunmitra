@@ -113,8 +113,9 @@ function documentsFor(file, html, siteUrl) {
     }
     // Any other card (an <article> or .glass box with exactly one main heading) is also one document,
     // so details placed above its heading (dates, labels) stay with it.
-    if (node !== root && (tag === 'article' || node.classList?.contains('glass')) && node.querySelectorAll('h1, h2').length === 1) {
-      const h = node.querySelector('h1, h2');
+    const cardHeads = tag === 'article' && !node.querySelector('h1, h2') ? node.querySelectorAll('h3') : node.querySelectorAll('h1, h2');
+    if (node !== root && (tag === 'article' || node.classList?.contains('glass')) && cardHeads.length === 1) {
+      const h = cardHeads[0];
       const id = node.getAttribute('id') || h.getAttribute('id');
       const card = start(clean(h.text).replace(/\s+/g, ' '), id || null, !!id);
       card.parts.push(textOf(node));

@@ -129,7 +129,8 @@
         "AI-integrated applications",
         "UI/UX design",
         "Search engine optimization (SEO)",
-        "Digital marketing"
+        "Digital marketing",
+        "Flutter"
       ],
       "knowsLanguage": [
         {
@@ -146,57 +147,67 @@
       "makesOffer": [
         {
           "@type": "Offer",
+          "url": "{{SITE_URL}}/services.html#gig-nextjs",
+          "availability": "https://schema.org/InStock",
           "itemOffered": {
             "@type": "Service",
-            "name": "Custom software development",
-            "url": "{{SITE_URL}}/blog/custom-software-development.html",
+            "name": "Custom web design & development (Next.js, TypeScript)",
             "provider": {
               "@id": "{{SITE_URL}}/#person"
-            }
+            },
+            "areaServed": "Worldwide"
           }
         },
         {
           "@type": "Offer",
+          "url": "{{SITE_URL}}/services.html#gig-wordpress",
+          "availability": "https://schema.org/InStock",
           "itemOffered": {
             "@type": "Service",
-            "name": "App development",
-            "url": "{{SITE_URL}}/blog/web-app-development.html",
+            "name": "Web design & development (WordPress)",
             "provider": {
               "@id": "{{SITE_URL}}/#person"
-            }
+            },
+            "areaServed": "Worldwide"
           }
         },
         {
           "@type": "Offer",
+          "url": "{{SITE_URL}}/services.html#gig-flutter",
+          "availability": "https://schema.org/InStock",
           "itemOffered": {
             "@type": "Service",
-            "name": "UI/UX design",
-            "url": "{{SITE_URL}}/blog/ui-ux-design.html",
+            "name": "App development (Flutter)",
             "provider": {
               "@id": "{{SITE_URL}}/#person"
-            }
+            },
+            "areaServed": "Worldwide"
           }
         },
         {
           "@type": "Offer",
+          "url": "{{SITE_URL}}/services.html#gig-laravel",
+          "availability": "https://schema.org/InStock",
           "itemOffered": {
             "@type": "Service",
-            "name": "Web design and development",
-            "url": "{{SITE_URL}}/blog/frontend-website-development.html",
+            "name": "Custom web & software development (PHP, Laravel)",
             "provider": {
               "@id": "{{SITE_URL}}/#person"
-            }
+            },
+            "areaServed": "Worldwide"
           }
         },
         {
           "@type": "Offer",
+          "url": "{{SITE_URL}}/services.html#gig-seo",
+          "availability": "https://schema.org/InStock",
           "itemOffered": {
             "@type": "Service",
-            "name": "SEO and digital marketing",
-            "url": "{{SITE_URL}}/blog/seo-for-small-business.html",
+            "name": "Digital marketing & SEO for business",
             "provider": {
               "@id": "{{SITE_URL}}/#person"
-            }
+            },
+            "areaServed": "Worldwide"
           }
         }
       ],
