@@ -130,7 +130,7 @@ console.log(`Search index: ${searchIndex.document_count} documents (${Object.ent
 
 // ---------- Static files ----------
 for (const f of [
-  'images', 'downloads', 'assets/fonts', 'assets/fonts.css', 'assets/icons', 'assets/vendor', 'assets/avatar-96.webp', 'assets/avatar-192.webp', 'favicon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'site.webmanifest', 'og-image.jpg',
+  'images', 'apk', 'assets/fonts', 'assets/fonts.css', 'assets/icons', 'assets/vendor', 'assets/avatar-96.webp', 'assets/avatar-192.webp', 'favicon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'site.webmanifest', 'og-image.jpg',
   'planet-1.png', 'planet-2.png', 'planet-3.png', '3d-astronaut.png', 'astronaut-in-spacesuit.png', 'nipun_mitra_software_developer.jpg',
 ]) {
   if (!existsSync(f)) throw new Error(`Missing ${f}`);
@@ -156,7 +156,7 @@ writeFileSync(join(OUT, '_headers'), `/*
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
-/downloads/*
+/apk/*
   Content-Type: application/vnd.android.package-archive
   Content-Disposition: attachment
   X-Robots-Tag: noindex

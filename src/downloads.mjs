@@ -2,7 +2,7 @@
 // Facts (version, Android requirement, permissions, size, checksum) come from the APK itself;
 // size and checksum are read from the file at build time so they can't go stale.
 //
-// To add an app: put the .apk in downloads/, the icon in images/apps/ (and in scripts/images.mjs),
+// To add an app: put the .apk in apk/, the icon in images/apps/ (and in scripts/images.mjs),
 // then add an entry to APPS.
 
 import { readFileSync, statSync, existsSync } from 'node:fs';
@@ -17,7 +17,7 @@ export const APPS = [
     name: 'Daily Cost',
     tagline: 'Track your everyday spending',
     category: 'Finance',
-    apk: 'downloads/daily-cost-1.0.apk',
+    apk: 'apk/daily-cost-1.0.apk',
     icon: 'images/apps/daily-cost.png',
     version: '1.0',
     versionCode: 1,

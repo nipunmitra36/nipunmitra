@@ -56,7 +56,7 @@
       ]
     },
     {
-      "source": "/downloads/(.*).apk",
+      "source": "/apk/(.*)",
       "headers": [
         {
           "key": "Content-Type",

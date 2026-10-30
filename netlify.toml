@@ -41,9 +41,9 @@
   publish = "dist"
   autoLaunch = false
 
-# App downloads: correct Android type, always download (never display), cache a day.
+# App downloads (APK files only, kept in /apk/ so this never touches /downloads, the page): correct Android type, always download (never display), cache a day.
 [[headers]]
-  for = "/downloads/*.apk"
+  for = "/apk/*"
   [headers.values]
     Content-Type = "application/vnd.android.package-archive"
     Content-Disposition = "attachment"
