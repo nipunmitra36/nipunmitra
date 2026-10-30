@@ -28,6 +28,7 @@ const PAGE_TYPES = {
   'projects.html': { type: 'projects' },
   'education.html': { type: 'education' },
   'contact.html': { type: 'contact' },
+  'downloads.html': { type: 'downloads' },
 };
 const typeFor = (file) => PAGE_TYPES[file] || (file.startsWith('blog/') ? { type: 'blog' } : null);
 

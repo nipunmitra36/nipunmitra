@@ -21,6 +21,7 @@ export const MENU = [
   { key: 'projects', label: 'Projects', file: 'projects.html' },
   { key: 'education', label: 'Education', file: 'education.html' },
   { key: 'blog', label: 'Blog', file: 'blog.html' },
+  { key: 'downloads', label: 'Downloads', file: 'downloads.html' },
 ];
 
 export const baseFor = (file) => '../'.repeat(file.split('/').length - 1);
@@ -51,7 +52,7 @@ function header(base, active) {
     <nav aria-label="Primary" class="glass mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-2.5 sm:px-6">
       <a href="${base}index.html" class="flex items-center gap-2.5"${active === 'home' ? ' aria-current="page"' : ''}>
         <img src="${base}assets/avatar-96.webp" srcset="${base}assets/avatar-96.webp 1x, ${base}assets/avatar-192.webp 2x" alt="" width="36" height="36" class="h-9 w-9 rounded-full object-cover ring-2 ring-nebula-violet/60" />
-        <span class="hidden font-display text-sm tracking-widest text-white sm:block">Nipun Mitra</span>
+        <span class="hidden whitespace-nowrap font-display text-sm tracking-widest text-white sm:block lg:hidden xl:block">Nipun Mitra</span>
       </a>
       <ul class="hidden items-center gap-0.5 text-sm lg:flex">
 ${MENU.map((m) => `        <li><a href="${base}${m.file}" class="${m.key === active ? activeCls : linkCls}"${current(m)}>${m.label}</a></li>`).join('\n')}
@@ -60,7 +61,7 @@ ${MENU.map((m) => `        <li><a href="${base}${m.file}" class="${m.key === act
         <a href="${WA}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="inline-flex h-10 items-center gap-2 rounded-full bg-[#25D366] px-3 text-sm font-semibold text-[#052e16] transition hover:brightness-110 xl:px-4">
           <i class="fa-brands fa-whatsapp text-lg leading-none" aria-hidden="true"></i><span class="hidden xl:inline">WhatsApp</span>
         </a>
-        <a href="${base}contact.html" class="hidden rounded-full bg-white px-5 py-2 text-sm font-semibold text-void transition hover:bg-nebula-cyan sm:inline-flex sm:items-center sm:gap-2"${active === 'contact' ? ' aria-current="page"' : ''}>
+        <a href="${base}contact.html" class="hidden whitespace-nowrap rounded-full bg-white px-5 py-2 text-sm font-semibold text-void transition hover:bg-nebula-cyan sm:inline-flex sm:items-center sm:gap-2"${active === 'contact' ? ' aria-current="page"' : ''}>
           Let's talk <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
         <button id="menu-btn" type="button" class="grid h-10 w-10 place-items-center rounded-full text-white hover:bg-white/10 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">

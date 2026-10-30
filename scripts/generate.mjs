@@ -9,12 +9,13 @@ import { responsiveImages } from './images.mjs';
 import { pages } from '../src/pages.mjs';
 import { posts } from '../src/posts.mjs';
 import { blogIndexPage, postPage } from '../src/blog.mjs';
+import { downloadsPage } from '../src/downloads.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 export function allPages() {
   const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
-  return [...pages, blogIndexPage(sorted), ...sorted.map((p) => postPage(p, sorted))];
+  return [...pages, downloadsPage(), blogIndexPage(sorted), ...sorted.map((p) => postPage(p, sorted))];
 }
 
 export function generate() {

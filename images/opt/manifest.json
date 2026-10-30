@@ -103,6 +103,24 @@
       }
     ]
   },
+  "images/apps/daily-cost.png": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "w": 96,
+        "file": "images/opt/daily-cost-9da12c62-96.webp"
+      },
+      {
+        "w": 192,
+        "file": "images/opt/daily-cost-9da12c62-192.webp"
+      },
+      {
+        "w": 384,
+        "file": "images/opt/daily-cost-9da12c62-384.webp"
+      }
+    ]
+  },
   "images/projects/alnoor.jpg": {
     "width": 1200,
     "height": 630,

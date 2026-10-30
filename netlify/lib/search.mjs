@@ -5,7 +5,7 @@
 // a small synonym list, a boost when the query names a content type ("projects", "skills"…)
 // and a bonus for exact phrase matches.
 
-export const TYPES = ['about', 'services', 'skills', 'experience', 'projects', 'education', 'blog', 'contact'];
+export const TYPES = ['about', 'services', 'skills', 'experience', 'projects', 'education', 'blog', 'contact', 'downloads'];
 
 export const LIMITS = Object.freeze({
   maxQueryLength: 200,
@@ -29,6 +29,7 @@ const TYPE_WORDS = {
   project: 'projects', portfolio: 'projects', case: 'projects', client: 'projects',
   education: 'education', degree: 'education', university: 'education', certification: 'education', certificate: 'education', diploma: 'education', study: 'education',
   blog: 'blog', article: 'blog', guide: 'blog', post: 'blog',
+  download: 'downloads', apk: 'downloads', android: 'downloads', install: 'downloads',
   contact: 'contact', email: 'contact', phone: 'contact', whatsapp: 'contact', linkedin: 'contact', github: 'contact', reach: 'contact',
 };
 

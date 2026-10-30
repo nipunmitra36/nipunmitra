@@ -396,6 +396,19 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   }
 })();
 
+/* ---------- Downloads: share button (native share sheet, or copy the link) ---------- */
+document.querySelectorAll('[data-share]').forEach((btn) => btn.addEventListener('click', async () => {
+  const url = btn.dataset.share, title = btn.dataset.shareTitle, label = btn.querySelector('[data-share-label]');
+  try {
+    if (navigator.share) return await navigator.share({ title, url });
+    await navigator.clipboard.writeText(url);
+    label.textContent = 'Link copied';
+  } catch {
+    label.textContent = 'Copy failed';
+  }
+  setTimeout(() => (label.textContent = 'Share'), 2000);
+}));
+
 /* ---------- Mobile menu ---------- */
 const menu = document.getElementById('mobile-menu');
 const menuBtn = document.getElementById('menu-btn');
